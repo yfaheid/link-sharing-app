@@ -1,4 +1,6 @@
-export default function Links() {
+import React from "react";
+
+export default function Links({ onRemove, id, linkNumber }) {
   return (
     <div className="bg-lighter-gray rounded-lg p-5 grid gap-3">
       <div className="flex justify-between">
@@ -7,19 +9,21 @@ export default function Links() {
             <div className="bg-gray h-px w-3"></div>
             <div className="bg-gray h-px w-3"></div>
           </div>
-          <div className="text-gray font-bold">Link #1</div>
+          <div className="text-gray font-bold">Link #{linkNumber}</div>
         </div>
-        <div className="text-gray">Remove</div>
+        <button className="text-gray" onClick={() => onRemove(id)}>
+          Remove
+        </button>
       </div>
       <div className="grid gap-3">
         <div className="grid gap-1">
-          <label htmlFor="links" className="text-xs text-dark-gray">
+          <label htmlFor={`platform-${id}`} className="text-xs text-dark-gray">
             Platform
           </label>
           <select
             className="appearance-none rounded-lg p-3 border-light-gray border text-dark-gray"
-            name="links"
-            id="links"
+            name={`platform-${id}`}
+            id={`platform-${id}`}
           >
             <option value="github">GitHub</option>
             <option value="frontend-mentor">Frontend Mentor</option>
@@ -36,12 +40,12 @@ export default function Links() {
           </select>
         </div>
         <div className="grid gap-1">
-          <label className="text-xs text-dark-gray" htmlFor="link">
+          <label className="text-xs text-dark-gray" htmlFor={`link-${id}`}>
             Link
           </label>
           <input
             className="rounded-lg p-3 border-light-gray border text-dark-gray"
-            id="link"
+            id={`link-${id}`}
             type="text"
             placeholder="e.g. https://www.github.com"
           />

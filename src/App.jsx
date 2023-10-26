@@ -3,7 +3,7 @@ import Body from "./Body";
 
 export default function App() {
   return (
-    <div className="bg-lighter-gray h-screen font-instrument">
+    <div className="bg-lighter-gray font-instrument">
       <Header />
       <Body />
     </div>
