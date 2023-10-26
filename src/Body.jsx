@@ -81,7 +81,8 @@ export default function Body() {
       </div>
       <div className="bg-white p-4 flex justify-center items-center rounded-bl-xl rounded-br-xl">
         <button
-          className={`text-white bg-dark-purple px-36 py-2.5 rounded-lg opacity-${saveButtonOpacity}`}
+          style={{ opacity: saveButtonOpacity / 100 }}
+          className="text-white w-full bg-dark-purple px-36 py-2.5 rounded-lg"
         >
           Save
         </button>

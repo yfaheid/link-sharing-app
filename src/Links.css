@@ -1,0 +1,22 @@
+/* Styling the select element */
+.custom-select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding: 0.5rem; /* Adjust the padding to your preference */
+  border: 1px solid #ccc; /* Border styles */
+  border-radius: 5px; /* Rounded corners */
+  background-color: white; /* Background color */
+  cursor: pointer; /* Show a pointer cursor */
+  outline: none; /* Remove the default focus outline */
+
+  /* Position the background arrow */
+  background-position: calc(100% - 15px) center;
+  background-repeat: no-repeat;
+  background-image: url("./assets/arrowdown.svg"); /* Replace with your arrow image */
+}
+
+/* Styling the select element when it's open (clicked) */
+.custom-select.open {
+  background-image: url("./assets/arrowup.svg");
+}
