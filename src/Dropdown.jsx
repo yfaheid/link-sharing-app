@@ -16,10 +16,9 @@ import stackoverflowIcon from "./assets/stackoverflow.svg";
 
 export default function Dropdown() {
   return (
-    <div className="w-[688px] h-[686px] py-3 bg-white rounded-lg shadow border border-zinc-300 flex-col justify-center items-start gap-3 inline-flex">
-      <div className="justify-start items-center inline-flex">
-        <div className="w-4 h-4 relative" />
-        <button className="w-[604px] gap-3 flex items-center text-zinc-800 text-base font-normal font-['Instrument Sans'] leading-normal">
+    <div className="w-[400px] h-[686px] py-3 bg-white rounded-lg shadow border border-zinc-300 flex-col justify-center items-start gap-3 inline-flex">
+      <div className="justify-start w-full items-center inline-flex">
+        <button className="w-full gap-3 flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal">
           <img src={githubIcon} alt="github icon" />
           GitHub
         </button>
@@ -28,9 +27,8 @@ export default function Dropdown() {
         className="self-stretch h-px bg-zinc-300"
         style={{ width: "95%", margin: "0 auto" }}
       />
-      <div className="justify-start items-center inline-flex">
-        <div className="w-4 h-4 relative"></div>
-        <button className="w-[604px] gap-3 flex items-center text-zinc-800 text-base font-normal font-['Instrument Sans'] leading-normal">
+      <div className="justify-start w-full items-center inline-flex">
+        <button className="w-full gap-3 flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal">
           <img src={frontendmentorIcon} alt="github icon" />
           Frontend Mentor
         </button>
@@ -39,9 +37,8 @@ export default function Dropdown() {
         className="self-stretch h-px bg-zinc-300"
         style={{ width: "95%", margin: "0 auto" }}
       />
-      <div className="justify-start items-center inline-flex">
-        <div className="w-4 h-4 relative" />
-        <button className="w-[604px] gap-3 flex items-center text-zinc-800 text-base font-normal font-['Instrument Sans'] leading-normal">
+      <div className="justify-start w-full items-center inline-flex">
+        <button className="w-full gap-3 flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal">
           <img src={twitterIcon} alt="github icon" />
           Twitter
         </button>
@@ -50,9 +47,8 @@ export default function Dropdown() {
         className="self-stretch h-px bg-zinc-300"
         style={{ width: "95%", margin: "0 auto" }}
       />
-      <div className="justify-start items-center inline-flex">
-        <div className="w-4 h-4 relative" />
-        <button className="w-[604px] gap-3 flex items-center text-zinc-800 text-base font-normal font-['Instrument Sans'] leading-normal">
+      <div className="justify-start w-full items-center inline-flex">
+        <button className="w-full gap-3 flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal">
           <img src={linkedinIcon} alt="github icon" />
           LinkedIn
         </button>
@@ -61,9 +57,8 @@ export default function Dropdown() {
         className="self-stretch h-px bg-zinc-300"
         style={{ width: "95%", margin: "0 auto" }}
       />
-      <div className="justify-start items-center inline-flex">
-        <div className="w-4 h-4 relative" />
-        <button className="w-[604px] gap-3 flex items-center text-zinc-800 text-base font-normal font-['Instrument Sans'] leading-normal">
+      <div className="justify-start w-full items-center inline-flex">
+        <button className="w-full gap-3 flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal">
           <img src={youtubeIcon} alt="github icon" />
           YouTube
         </button>
@@ -72,9 +67,8 @@ export default function Dropdown() {
         className="self-stretch h-px bg-zinc-300"
         style={{ width: "95%", margin: "0 auto" }}
       />
-      <div className="justify-start items-center inline-flex">
-        <div className="w-4 h-4 relative" />
-        <button className="w-[604px] gap-3 flex items-center text-zinc-800 text-base font-normal font-['Instrument Sans'] leading-normal">
+      <div className="justify-start w-full items-center inline-flex">
+        <button className="w-full gap-3 flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal">
           <img src={facebookIcon} alt="github icon" />
           Facebook
         </button>
@@ -83,9 +77,8 @@ export default function Dropdown() {
         className="self-stretch h-px bg-zinc-300"
         style={{ width: "95%", margin: "0 auto" }}
       />
-      <div className="justify-start items-center inline-flex">
-        <div className="w-4 h-4 relative" />
-        <button className="w-[604px] gap-3 flex items-center text-zinc-800 text-base font-normal font-['Instrument Sans'] leading-normal">
+      <div className="justify-start w-full items-center inline-flex">
+        <button className="w-full gap-3 flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal">
           <img src={twitchIcon} alt="github icon" />
           Twitch
         </button>
@@ -94,11 +87,8 @@ export default function Dropdown() {
         className="self-stretch h-px bg-zinc-300"
         style={{ width: "95%", margin: "0 auto" }}
       />
-      <div className="justify-start items-center inline-flex">
-        <div className="w-4 h-4 relative">
-          <div className="w-4 h-4 left-0 top-0 absolute"></div>
-        </div>
-        <button className="w-[604px] gap-3 flex items-center text-zinc-800 text-base font-normal font-['Instrument Sans'] leading-normal">
+      <div className="justify-start w-full items-center inline-flex">
+        <button className="w-full gap-3 flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal">
           <img src={devtoIcon} alt="github icon" />
           Dev.to
         </button>
@@ -107,9 +97,8 @@ export default function Dropdown() {
         className="self-stretch h-px bg-zinc-300"
         style={{ width: "95%", margin: "0 auto" }}
       />
-      <div className="justify-start items-center inline-flex">
-        <div className="w-4 h-4 relative" />
-        <button className="w-[604px] gap-3 flex items-center text-zinc-800 text-base font-normal font-['Instrument Sans'] leading-normal">
+      <div className="justify-start w-full items-center inline-flex">
+        <button className="w-full gap-3 flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal">
           <img src={codewarsIcon} alt="github icon" />
           Codewars
         </button>
@@ -118,9 +107,8 @@ export default function Dropdown() {
         className="self-stretch h-px bg-zinc-300"
         style={{ width: "95%", margin: "0 auto" }}
       />
-      <div className="justify-start items-center inline-flex">
-        <div className="w-4 h-4 relative" />
-        <button className="w-[604px] gap-3 flex items-center text-zinc-800 text-base font-normal font-['Instrument Sans'] leading-normal">
+      <div className="justify-start w-full items-center inline-flex">
+        <button className="w-full gap-3 flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal">
           <img src={codepenIcon} alt="github icon" />
           Codepen
         </button>
@@ -129,9 +117,8 @@ export default function Dropdown() {
         className="self-stretch h-px bg-zinc-300"
         style={{ width: "95%", margin: "0 auto" }}
       />
-      <div className="justify-start items-center inline-flex">
-        <div className="w-4 h-4 relative" />
-        <button className="w-[604px] gap-3 flex items-center text-zinc-800 text-base font-normal font-['Instrument Sans'] leading-normal">
+      <div className="justify-start w-full items-center inline-flex">
+        <button className="w-full gap-3 flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal">
           <img src={freecodecampIcon} alt="github icon" />
           freeCodeCamp
         </button>
@@ -140,9 +127,8 @@ export default function Dropdown() {
         className="self-stretch h-px bg-zinc-300"
         style={{ width: "95%", margin: "0 auto" }}
       />
-      <div className="justify-start items-center inline-flex">
-        <div className="w-4 h-4 relative" />
-        <button className="w-[604px] gap-3 flex items-center text-zinc-800 text-base font-normal font-['Instrument Sans'] leading-normal">
+      <div className="justify-start w-full items-center inline-flex">
+        <button className="w-full gap-3 flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal">
           <img src={gitlabIcon} alt="github icon" />
           GitLab
         </button>
@@ -151,9 +137,8 @@ export default function Dropdown() {
         className="self-stretch h-px bg-zinc-300"
         style={{ width: "95%", margin: "0 auto" }}
       />
-      <div className="justify-start items-center inline-flex">
-        <div className="w-4 h-4 relative" />
-        <button className="w-[604px] gap-3 flex items-center text-zinc-800 text-base font-normal font-['Instrument Sans'] leading-normal">
+      <div className="justify-start w-full items-center inline-flex">
+        <button className="w-full gap-3 flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal">
           <img src={hashnodeIcon} alt="github icon" />
           Hashnode
         </button>
@@ -162,9 +147,8 @@ export default function Dropdown() {
         className="self-stretch h-px bg-zinc-300"
         style={{ width: "95%", margin: "0 auto" }}
       />
-      <div className="h-[25px] justify-start items-center inline-flex">
-        <div className="w-4 h-4 relative" />
-        <button className="w-[604px] gap-3 flex items-center text-zinc-800 text-base font-normal font-['Instrument Sans'] leading-normal">
+      <div className="h-[25px] justify-start w-full items-center inline-flex">
+        <button className="w-full gap-3 flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal">
           <img src={stackoverflowIcon} alt="github icon" />
           Stack Overflow
         </button>
