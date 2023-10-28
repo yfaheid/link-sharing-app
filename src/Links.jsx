@@ -133,22 +133,20 @@ export default function Links({ onRemove, id, linkNumber }) {
               />
             </div>
             <button
-              className="custom-dropdown-button rounded-lg p-3 border-light-gray border text-dark-gray w-full"
+              className="custom-dropdown-button rounded-lg text-left pl-11 p-3 border-light-gray border bg-white text-dark-gray w-full"
               onClick={toggleDropdown}
             >
               {selectedPlatform}
             </button>
             {showDropdown && (
-              <div
-                className="custom-dropdown"
-                style={{
-                  position: "absolute",
-                  top: "100%",
-                  left: 0,
-                  zIndex: 1,
-                }}
-              >
-                <Dropdown handlePlatformSelection={setSelectedPlatform} />
+              <div className="custom-dropdown">
+                <Dropdown
+                  handlePlatformSelection={(platform) => {
+                    setSelectedPlatform(platform);
+                    setShowDropdown(false); // Close the dropdown after selecting a platform
+                  }}
+                  closeDropdown={() => setShowDropdown(false)} // Pass down the function to close the dropdown
+                />
               </div>
             )}
           </div>

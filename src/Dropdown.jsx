@@ -14,13 +14,14 @@ import gitlabIcon from "./assets/gitlab.svg";
 import hashnodeIcon from "./assets/hashnode.svg";
 import stackoverflowIcon from "./assets/stackoverflow.svg";
 
-export default function Dropdown({ handlePlatformSelection }) {
+export default function Dropdown({ handlePlatformSelection, closeDropdown }) {
   const selectPlatform = (platform) => {
     handlePlatformSelection(platform);
+    closeDropdown(); // Call the function to close the dropdown
   };
 
   return (
-    <div className="bg-white rounded-lg shadow border border-zinc-300 flex-col justify-center items-start inline-flex">
+    <div className="bg-white z-10 absolute rounded-lg shadow border border-zinc-300 flex-col justify-center items-start inline-flex">
       <button
         onClick={() => selectPlatform("GitHub")}
         className="w-full gap-3 p-3 pr-32 h-full flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal"
