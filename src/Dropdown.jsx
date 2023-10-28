@@ -14,145 +14,163 @@ import gitlabIcon from "./assets/gitlab.svg";
 import hashnodeIcon from "./assets/hashnode.svg";
 import stackoverflowIcon from "./assets/stackoverflow.svg";
 
-export default function Dropdown() {
+export default function Dropdown({ handlePlatformSelection }) {
+  const selectPlatform = (platform) => {
+    handlePlatformSelection(platform);
+  };
+
   return (
-    <div className="w-[400px] h-[686px] py-3 bg-white rounded-lg shadow border border-zinc-300 flex-col justify-center items-start gap-3 inline-flex">
-      <div className="justify-start w-full items-center inline-flex">
-        <button className="w-full gap-3 flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal">
-          <img src={githubIcon} alt="github icon" />
-          GitHub
-        </button>
-      </div>
+    <div className="bg-white rounded-lg shadow border border-zinc-300 flex-col justify-center items-start inline-flex">
+      <button
+        onClick={() => selectPlatform("GitHub")}
+        className="w-full gap-3 p-3 pr-32 h-full flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal"
+      >
+        <img src={githubIcon} alt="GitHub icon" />
+        GitHub
+      </button>
       <div
         className="self-stretch h-px bg-zinc-300"
         style={{ width: "95%", margin: "0 auto" }}
       />
-      <div className="justify-start w-full items-center inline-flex">
-        <button className="w-full gap-3 flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal">
-          <img src={frontendmentorIcon} alt="github icon" />
-          Frontend Mentor
-        </button>
-      </div>
+      <button
+        onClick={() => selectPlatform("Frontend Mentor")}
+        className="w-full gap-3 p-3 flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal"
+      >
+        <img src={frontendmentorIcon} alt="Frontend Mentor icon" />
+        Frontend Mentor
+      </button>
       <div
         className="self-stretch h-px bg-zinc-300"
         style={{ width: "95%", margin: "0 auto" }}
       />
-      <div className="justify-start w-full items-center inline-flex">
-        <button className="w-full gap-3 flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal">
-          <img src={twitterIcon} alt="github icon" />
-          Twitter
-        </button>
-      </div>
+      <button
+        onClick={() => selectPlatform("Twitter")}
+        className="w-full gap-3 p-3 flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal"
+      >
+        <img src={twitterIcon} alt="Twitter icon" />
+        Twitter
+      </button>
       <div
         className="self-stretch h-px bg-zinc-300"
         style={{ width: "95%", margin: "0 auto" }}
       />
-      <div className="justify-start w-full items-center inline-flex">
-        <button className="w-full gap-3 flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal">
-          <img src={linkedinIcon} alt="github icon" />
-          LinkedIn
-        </button>
-      </div>
+      <button
+        onClick={() => selectPlatform("LinkedIn")}
+        className="w-full gap-3 p-3 flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal"
+      >
+        <img src={linkedinIcon} alt="LinkedIn icon" />
+        LinkedIn
+      </button>
       <div
         className="self-stretch h-px bg-zinc-300"
         style={{ width: "95%", margin: "0 auto" }}
       />
-      <div className="justify-start w-full items-center inline-flex">
-        <button className="w-full gap-3 flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal">
-          <img src={youtubeIcon} alt="github icon" />
-          YouTube
-        </button>
-      </div>
+      <button
+        onClick={() => selectPlatform("YouTube")}
+        className="w-full gap-3 p-3 flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal"
+      >
+        <img src={youtubeIcon} alt="YouTube icon" />
+        YouTube
+      </button>
       <div
         className="self-stretch h-px bg-zinc-300"
         style={{ width: "95%", margin: "0 auto" }}
       />
-      <div className="justify-start w-full items-center inline-flex">
-        <button className="w-full gap-3 flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal">
-          <img src={facebookIcon} alt="github icon" />
-          Facebook
-        </button>
-      </div>
+      <button
+        onClick={() => selectPlatform("Facebook")}
+        className="w-full gap-3 p-3 flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal"
+      >
+        <img src={facebookIcon} alt="Facebook icon" />
+        Facebook
+      </button>
       <div
         className="self-stretch h-px bg-zinc-300"
         style={{ width: "95%", margin: "0 auto" }}
       />
-      <div className="justify-start w-full items-center inline-flex">
-        <button className="w-full gap-3 flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal">
-          <img src={twitchIcon} alt="github icon" />
-          Twitch
-        </button>
-      </div>
+      <button
+        onClick={() => selectPlatform("Twitch")}
+        className="w-full gap-3 p-3 flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal"
+      >
+        <img src={twitchIcon} alt="Twitch icon" />
+        Twitch
+      </button>
       <div
         className="self-stretch h-px bg-zinc-300"
         style={{ width: "95%", margin: "0 auto" }}
       />
-      <div className="justify-start w-full items-center inline-flex">
-        <button className="w-full gap-3 flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal">
-          <img src={devtoIcon} alt="github icon" />
-          Dev.to
-        </button>
-      </div>
+      <button
+        onClick={() => selectPlatform("Dev.to")}
+        className="w-full gap-3 p-3 flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal"
+      >
+        <img src={devtoIcon} alt="Dev.to icon" />
+        Dev.to
+      </button>
       <div
         className="self-stretch h-px bg-zinc-300"
         style={{ width: "95%", margin: "0 auto" }}
       />
-      <div className="justify-start w-full items-center inline-flex">
-        <button className="w-full gap-3 flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal">
-          <img src={codewarsIcon} alt="github icon" />
-          Codewars
-        </button>
-      </div>
+      <button
+        onClick={() => selectPlatform("Codewars")}
+        className="w-full gap-3 p-3 flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal"
+      >
+        <img src={codewarsIcon} alt="Codewars icon" />
+        Codewars
+      </button>
       <div
         className="self-stretch h-px bg-zinc-300"
         style={{ width: "95%", margin: "0 auto" }}
       />
-      <div className="justify-start w-full items-center inline-flex">
-        <button className="w-full gap-3 flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal">
-          <img src={codepenIcon} alt="github icon" />
-          Codepen
-        </button>
-      </div>
+      <button
+        onClick={() => selectPlatform("Codepen")}
+        className="w-full gap-3 p-3 flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal"
+      >
+        <img src={codepenIcon} alt="Codepen icon" />
+        Codepen
+      </button>
       <div
         className="self-stretch h-px bg-zinc-300"
         style={{ width: "95%", margin: "0 auto" }}
       />
-      <div className="justify-start w-full items-center inline-flex">
-        <button className="w-full gap-3 flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal">
-          <img src={freecodecampIcon} alt="github icon" />
-          freeCodeCamp
-        </button>
-      </div>
+      <button
+        onClick={() => selectPlatform("freeCodeCamp")}
+        className="w-full gap-3 p-3 flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal"
+      >
+        <img src={freecodecampIcon} alt="freeCodeCamp icon" />
+        freeCodeCamp
+      </button>
       <div
         className="self-stretch h-px bg-zinc-300"
         style={{ width: "95%", margin: "0 auto" }}
       />
-      <div className="justify-start w-full items-center inline-flex">
-        <button className="w-full gap-3 flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal">
-          <img src={gitlabIcon} alt="github icon" />
-          GitLab
-        </button>
-      </div>
+      <button
+        onClick={() => selectPlatform("GitLab")}
+        className="w-full gap-3 p-3 flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal"
+      >
+        <img src={gitlabIcon} alt="GitLab icon" />
+        GitLab
+      </button>
       <div
         className="self-stretch h-px bg-zinc-300"
         style={{ width: "95%", margin: "0 auto" }}
       />
-      <div className="justify-start w-full items-center inline-flex">
-        <button className="w-full gap-3 flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal">
-          <img src={hashnodeIcon} alt="github icon" />
-          Hashnode
-        </button>
-      </div>
+      <button
+        onClick={() => selectPlatform("Hashnode")}
+        className="w-full gap-3 p-3 flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal"
+      >
+        <img src={hashnodeIcon} alt="Hashnode icon" />
+        Hashnode
+      </button>
       <div
         className="self-stretch h-px bg-zinc-300"
         style={{ width: "95%", margin: "0 auto" }}
       />
-      <div className="h-[25px] justify-start w-full items-center inline-flex">
-        <button className="w-full gap-3 flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal">
-          <img src={stackoverflowIcon} alt="github icon" />
-          Stack Overflow
-        </button>
-      </div>
+      <button
+        onClick={() => selectPlatform("Stack Overflow")}
+        className="w-full gap-3 p-3 flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal"
+      >
+        <img src={stackoverflowIcon} alt="Stack Overflow icon" />
+        Stack Overflow
+      </button>
     </div>
   );
 }

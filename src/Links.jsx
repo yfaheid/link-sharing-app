@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Links.css";
+import Dropdown from "./Dropdown";
 import linksmallIcon from "./assets/linksmall.svg";
 import githubIcon from "./assets/github.svg";
 import frontendmentorIcon from "./assets/frontendmentor.svg";
@@ -89,16 +90,18 @@ export default function Links({ onRemove, id, linkNumber }) {
       placeholder: "https://stackoverflow.com/johnappleseed",
     },
   ];
-
   const [selectedPlatform, setSelectedPlatform] = useState(platforms[0].name);
+  const [showDropdown, setShowDropdown] = useState(false);
 
-  const toggleSelect = (event) => {
-    const selectElement = event.target;
-    selectElement.classList.toggle("open");
+  const toggleDropdown = () => {
+    setShowDropdown(!showDropdown);
   };
 
   return (
-    <div className="bg-lighter-gray rounded-lg p-5 grid gap-3">
+    <div
+      className="bg-lighter-gray rounded-lg p-5 grid gap-3"
+      style={{ position: "relative" }}
+    >
       <div className="flex justify-between">
         <div className="flex items-center gap-3">
           <div className="grid gap-1">
@@ -112,7 +115,7 @@ export default function Links({ onRemove, id, linkNumber }) {
         </button>
       </div>
       <div className="grid gap-3">
-        <div className="grid gap-1">
+        <div className="grid gap-1" style={{ position: "relative" }}>
           <label htmlFor={`platform-${id}`} className="text-xs text-dark-gray">
             Platform
           </label>
@@ -129,23 +132,28 @@ export default function Links({ onRemove, id, linkNumber }) {
                 height="20"
               />
             </div>
-            <select
-              className="custom-select rounded-lg p-3 border-light-gray border text-dark-gray pl-10 w-full"
-              name={`platform-${id}`}
-              id={`platform-${id}`}
-              value={selectedPlatform}
-              onChange={(e) => setSelectedPlatform(e.target.value)}
-              onClick={toggleSelect}
+            <button
+              className="custom-dropdown-button rounded-lg p-3 border-light-gray border text-dark-gray w-full"
+              onClick={toggleDropdown}
             >
-              {platforms.map((platform) => (
-                <option key={platform.name} value={platform.name}>
-                  {platform.name}
-                </option>
-              ))}
-            </select>
+              {selectedPlatform}
+            </button>
+            {showDropdown && (
+              <div
+                className="custom-dropdown"
+                style={{
+                  position: "absolute",
+                  top: "100%",
+                  left: 0,
+                  zIndex: 1,
+                }}
+              >
+                <Dropdown handlePlatformSelection={setSelectedPlatform} />
+              </div>
+            )}
           </div>
         </div>
-        <div className="grid gap-1">
+        <div className="grid gap-1" style={{ position: "relative" }}>
           <label className="text-xs text-dark-gray" htmlFor={`link-${id}`}>
             Link
           </label>
