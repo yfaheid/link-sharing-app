@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import "./Dropdown.css";
 import githubIcon from "./assets/github.svg";
 import frontendmentorIcon from "./assets/frontendmentor.svg";
 import twitterIcon from "./assets/twitter.svg";
@@ -14,14 +15,44 @@ import gitlabIcon from "./assets/gitlab.svg";
 import hashnodeIcon from "./assets/hashnode.svg";
 import stackoverflowIcon from "./assets/stackoverflow.svg";
 
-export default function Dropdown({ handlePlatformSelection, closeDropdown }) {
+export default function Dropdown({
+  handlePlatformSelection,
+  closeDropdown,
+  buttonWidth,
+}) {
   const selectPlatform = (platform) => {
     handlePlatformSelection(platform);
     closeDropdown(); // Call the function to close the dropdown
   };
 
+  const [width, setWidth] = useState(buttonWidth);
+
+  useEffect(() => {
+    setWidth(buttonWidth);
+  }, [buttonWidth]);
+
+  const dropdownStyle = {
+    width: width, // Use the updated width
+  };
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (buttonWidth !== width) {
+        setWidth(buttonWidth);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [buttonWidth, width]);
+
   return (
-    <div className="bg-white z-10 absolute rounded-lg shadow border border-zinc-300 flex-col justify-center items-start inline-flex">
+    <div
+      className="bg-white z-10 absolute overflow-y-auto h-60 rounded-lg shadow border border-zinc-300 items-start grid"
+      style={dropdownStyle}
+    >
       <button
         onClick={() => selectPlatform("GitHub")}
         className="w-full gap-3 p-3 pr-32 h-full flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal"

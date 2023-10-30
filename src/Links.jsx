@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import "./Links.css";
 import Dropdown from "./Dropdown";
 import linksmallIcon from "./assets/linksmall.svg";
@@ -16,6 +16,8 @@ import freecodecampIcon from "./assets/freecodecamp.svg";
 import gitlabIcon from "./assets/gitlab.svg";
 import hashnodeIcon from "./assets/hashnode.svg";
 import stackoverflowIcon from "./assets/stackoverflow.svg";
+import arrowUpIcon from "./assets/arrowup.svg";
+import arrowDownIcon from "./assets/arrowdown.svg";
 
 export default function Links({ onRemove, id, linkNumber }) {
   const platforms = [
@@ -97,11 +99,27 @@ export default function Links({ onRemove, id, linkNumber }) {
     setShowDropdown(!showDropdown);
   };
 
+  const [buttonWidth, setButtonWidth] = useState(null);
+  const buttonRef = useRef(null);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (buttonRef.current) {
+        const width = buttonRef.current.offsetWidth;
+        setButtonWidth(`${width}px`);
+      }
+    };
+
+    handleResize(); // Calculate the initial width
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
-    <div
-      className="bg-lighter-gray rounded-lg p-5 grid gap-3"
-      style={{ position: "relative" }}
-    >
+    <div className="bg-lighter-gray rounded-lg p-5 grid gap-3 relative">
       <div className="flex justify-between">
         <div className="flex items-center gap-3">
           <div className="grid gap-1">
@@ -115,7 +133,7 @@ export default function Links({ onRemove, id, linkNumber }) {
         </button>
       </div>
       <div className="grid gap-3">
-        <div className="grid gap-1" style={{ position: "relative" }}>
+        <div className="grid gap-1 relative">
           <label htmlFor={`platform-${id}`} className="text-xs text-dark-gray">
             Platform
           </label>
@@ -133,25 +151,35 @@ export default function Links({ onRemove, id, linkNumber }) {
               />
             </div>
             <button
-              className="custom-dropdown-button rounded-lg text-left pl-11 p-3 border-light-gray border bg-white text-dark-gray w-full"
+              id="platform-button"
+              className="rounded-lg text-left pl-11 p-3 border-light-gray border bg-white text-dark-gray w-full"
               onClick={toggleDropdown}
+              ref={buttonRef}
             >
               {selectedPlatform}
+              <span className="absolute top-5 right-3.5">
+                {showDropdown ? (
+                  <img src={arrowUpIcon} alt="Arrow Up" />
+                ) : (
+                  <img src={arrowDownIcon} alt="Arrow Down" />
+                )}
+              </span>
             </button>
             {showDropdown && (
-              <div className="custom-dropdown">
+              <div className="absolute mt-2">
                 <Dropdown
                   handlePlatformSelection={(platform) => {
                     setSelectedPlatform(platform);
-                    setShowDropdown(false); // Close the dropdown after selecting a platform
+                    setShowDropdown(false);
                   }}
-                  closeDropdown={() => setShowDropdown(false)} // Pass down the function to close the dropdown
+                  closeDropdown={() => setShowDropdown(false)}
+                  buttonWidth={buttonWidth}
                 />
               </div>
             )}
           </div>
         </div>
-        <div className="grid gap-1" style={{ position: "relative" }}>
+        <div className="grid gap-1 relative">
           <label className="text-xs text-dark-gray" htmlFor={`link-${id}`}>
             Link
           </label>
@@ -160,7 +188,7 @@ export default function Links({ onRemove, id, linkNumber }) {
               <img src={linksmallIcon} alt="icon" />
             </div>
             <input
-              className="pl-10 rounded-lg p-3 border-light-gray border text-dark-gray w-full"
+              className="pl-10 rounded-lg p-3 border-light-gray text-dark-gray border w-full"
               id={`link-${id}`}
               type="text"
               placeholder={
