@@ -1,5 +1,4 @@
 import React, { useRef, useState, useEffect } from "react";
-import "./Links.css";
 import Dropdown from "./Dropdown";
 import linksmallIcon from "./assets/linksmall.svg";
 import githubIcon from "./assets/github.svg";
@@ -134,7 +133,10 @@ export default function Links({ onRemove, id, linkNumber }) {
       </div>
       <div className="grid gap-3">
         <div className="grid gap-1 relative">
-          <label htmlFor={`platform-${id}`} className="text-xs text-dark-gray">
+          <label
+            htmlFor={`platform-button-${id}`}
+            className="text-xs text-dark-gray"
+          >
             Platform
           </label>
           <div className="relative">
@@ -151,7 +153,7 @@ export default function Links({ onRemove, id, linkNumber }) {
               />
             </div>
             <button
-              id="platform-button"
+              id={`platform-button-${id}`}
               className="rounded-lg text-left pl-11 p-3 border-light-gray border bg-white text-dark-gray w-full"
               onClick={toggleDropdown}
               ref={buttonRef}

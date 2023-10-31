@@ -4,14 +4,17 @@ import Links from "./Links";
 
 export default function Body() {
   const [links, setLinks] = useState([]);
+  const [linkCounter, setLinkCounter] = useState(0);
   const [isDivHidden, setDivHidden] = useState(false);
 
   const addLink = () => {
     const newLink = {
-      id: links.length + 1, // Dynamically calculate the link ID
+      id: linkCounter + 1, // Use the counter as a unique ID
+      platform: "GitHub", // Example default platform (can be customized)
     };
 
     setLinks([...links, newLink]);
+    setLinkCounter(linkCounter + 1); // Increment the counter
     setDivHidden(true);
   };
 
@@ -22,13 +25,6 @@ export default function Body() {
 
     if (updatedLinks.length === 0) {
       setDivHidden(false);
-    } else {
-      // Recompute link numbers
-      const renumberedLinks = updatedLinks.map((link, index) => ({
-        ...link,
-        id: index + 1,
-      }));
-      setLinks(renumberedLinks);
     }
   };
 
@@ -55,11 +51,11 @@ export default function Body() {
             >
               + Add new link
             </button>
-            {links.map((link) => (
+            {links.map((link, index) => (
               <Links
                 key={link.id}
                 id={link.id}
-                linkNumber={link.id}
+                linkNumber={index + 1} // Use index as link number
                 onRemove={removeLink}
               />
             ))}
