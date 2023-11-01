@@ -17,6 +17,9 @@ export default {
       fontFamily: {
         instrument: ["'Instrument Sans', sans-serif"],
       },
+      spacing: {
+        15: "3.85rem",
+      },
       minHeight: {
         "10v": "10vh",
         "20v": "20vh",
