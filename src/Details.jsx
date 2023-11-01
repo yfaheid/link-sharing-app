@@ -28,23 +28,25 @@ export default function Details() {
                   <label className="text-xs grid gap-1" htmlFor="first-name">
                     First name*
                     <input
-                      className="border-light-gray border text-base rounded-lg p-2.5"
+                      className="border-light-gray border text-base pl-4 rounded-lg p-2.5"
                       id="first-name"
                       type="text"
+                      required
                     />
                   </label>
                   <label className="text-xs grid gap-1" htmlFor="last-name">
                     Last name*
                     <input
-                      className="border-light-gray border text-base rounded-lg p-2.5"
+                      className="border-light-gray border text-base pl-4 rounded-lg p-2.5"
                       id="last-name"
                       type="text"
+                      required
                     />
                   </label>
                   <label className="text-xs grid gap-1" htmlFor="first-name">
-                    Email*
+                    Email
                     <input
-                      className="border-light-gray border text-base rounded-lg p-2.5"
+                      className="border-light-gray border text-base pl-4 rounded-lg p-2.5"
                       id="email"
                       type="email"
                     />
