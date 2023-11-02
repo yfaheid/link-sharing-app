@@ -121,10 +121,10 @@ export default function Links({ onRemove, id, linkNumber }) {
     <div className="bg-lighter-gray rounded-lg p-5 grid gap-3 relative">
       <div className="flex justify-between">
         <div className="flex items-center gap-3">
-          <div className="grid gap-1">
+          <button className="grid gap-1">
             <div className="bg-gray h-px w-3"></div>
             <div className="bg-gray h-px w-3"></div>
-          </div>
+          </button>
           <div className="text-gray font-bold">Link #{linkNumber}</div>
         </div>
         <button className="text-gray" onClick={() => onRemove(id)}>
