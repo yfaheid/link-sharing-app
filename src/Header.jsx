@@ -7,6 +7,7 @@ import purpleUserIcon from "./assets/purpleuser.svg";
 import eyeIcon from "./assets/eye.svg";
 import Details from "./Details";
 import Body from "./Body";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   const [showDetails, setShowDetails] = useState(false);
@@ -42,9 +43,11 @@ export default function Header() {
             />
           </button>
         </div>
-        <button className="border border-dark-purple py-2.5 px-4 rounded-lg">
-          <img src={eyeIcon} alt="eye icon" />
-        </button>
+        <Link to="/preview">
+          <button className="border border-dark-purple py-2.5 px-4 rounded-lg">
+            <img src={eyeIcon} alt="eye icon" />
+          </button>
+        </Link>
       </div>
       {showDetails ? <Details /> : showBody && <Body />}
     </div>

@@ -9,18 +9,17 @@ export default function Body() {
 
   const addLink = () => {
     const newLink = {
-      id: linkCounter + 1, // Use the counter as a unique ID
-      platform: "GitHub", // Example default platform (can be customized)
+      id: linkCounter + 1,
+      platform: "GitHub",
     };
 
     setLinks([...links, newLink]);
-    setLinkCounter(linkCounter + 1); // Increment the counter
+    setLinkCounter(linkCounter + 1);
     setDivHidden(true);
   };
 
   const removeLink = (id) => {
     const updatedLinks = links.filter((link) => link.id !== id);
-
     setLinks(updatedLinks);
 
     if (updatedLinks.length === 0) {
@@ -28,8 +27,8 @@ export default function Body() {
     }
   };
 
-  // Calculate the opacity for the Save button
   const saveButtonOpacity = links.length > 0 ? 100 : 30;
+  const isSaveDisabled = links.length === 0;
 
   return (
     <div className="p-4">
@@ -45,9 +44,7 @@ export default function Body() {
             </p>
             <div className="grid gap-6">
               <button
-                onClick={() => {
-                  addLink();
-                }}
+                onClick={addLink}
                 className="font-bold border-dark-purple p-3 border rounded-lg text-dark-purple"
               >
                 + Add new link
@@ -56,7 +53,7 @@ export default function Body() {
                 <Links
                   key={link.id}
                   id={link.id}
-                  linkNumber={index + 1} // Use index as link number
+                  linkNumber={index + 1}
                   onRemove={removeLink}
                 />
               ))}
@@ -79,6 +76,7 @@ export default function Body() {
       </div>
       <div className="bg-white p-4 flex justify-center items-center rounded-bl-xl rounded-br-xl">
         <button
+          disabled={isSaveDisabled}
           style={{ opacity: saveButtonOpacity / 100 }}
           className="text-white w-full bg-dark-purple px-36 py-2.5 rounded-lg"
         >

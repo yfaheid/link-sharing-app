@@ -28,7 +28,7 @@ export default function Links({ onRemove, id, linkNumber }) {
     {
       name: "Frontend Mentor",
       logo: frontendmentorIcon,
-      placeholder: "https://frontendmentor.io/johnappleseed",
+      placeholder: "https://frontendmentor.io/profile/johnappleseed",
     },
     {
       name: "Twitter",
@@ -38,12 +38,12 @@ export default function Links({ onRemove, id, linkNumber }) {
     {
       name: "LinkedIn",
       logo: linkedinIcon,
-      placeholder: "https://linkedin.com/johnappleseed",
+      placeholder: "https://linkedin.com/in/johnappleseed",
     },
     {
       name: "YouTube",
       logo: youtubeIcon,
-      placeholder: "https://youtube.com/johnappleseed",
+      placeholder: "https://youtube.com/@johnappleseed",
     },
     {
       name: "Facebook",
@@ -63,7 +63,7 @@ export default function Links({ onRemove, id, linkNumber }) {
     {
       name: "Codewars",
       logo: codewarsIcon,
-      placeholder: "https://codewars.com/johnappleseed",
+      placeholder: "https://codewars.com/users/johnappleseed",
     },
     {
       name: "Codepen",
@@ -83,12 +83,12 @@ export default function Links({ onRemove, id, linkNumber }) {
     {
       name: "Hashnode",
       logo: hashnodeIcon,
-      placeholder: "https://hashnode.com/johnappleseed",
+      placeholder: "https://hashnode.com/@johnappleseed",
     },
     {
       name: "Stack Overflow",
       logo: stackoverflowIcon,
-      placeholder: "https://stackoverflow.com/johnappleseed",
+      placeholder: "https://stackoverflow.com/users/123456/johnappleseed",
     },
   ];
   const [selectedPlatform, setSelectedPlatform] = useState(platforms[0].name);
