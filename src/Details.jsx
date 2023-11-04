@@ -14,10 +14,10 @@ export default function Details() {
               <div className="bg-lighter-gray p-5 grid gap-4 rounded-xl">
                 <h2 className="text-gray text-base">Profile picture</h2>
                 <div className="grid gap-6">
-                  <div className="bg-light-purple py-15 w-9/12 rounded-xl grid gap-2 justify-center">
+                  <button className="bg-light-purple py-15 w-9/12 rounded-xl grid gap-2 justify-center">
                     <img className="m-auto" src={imageIcon} alt="image icon" />
                     <p className="text-dark-purple font-bold">+ Upload Image</p>
-                  </div>
+                  </button>
                   <p className="text-gray text-xs">
                     Image must be below 1024x1024px. Use PNG or JPG format.
                   </p>

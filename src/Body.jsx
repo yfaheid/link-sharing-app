@@ -1,34 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import phoneIcon from "./assets/phone.svg";
 import Links from "./Links";
+import { useLinkContext } from "./LinksContext";
 
 export default function Body() {
-  const [links, setLinks] = useState([]);
-  const [linkCounter, setLinkCounter] = useState(0);
-  const [isDivHidden, setDivHidden] = useState(false);
-
-  const addLink = () => {
-    const newLink = {
-      id: linkCounter + 1,
-      platform: "GitHub",
-    };
-
-    setLinks([...links, newLink]);
-    setLinkCounter(linkCounter + 1);
-    setDivHidden(true);
-  };
-
-  const removeLink = (id) => {
-    const updatedLinks = links.filter((link) => link.id !== id);
-    setLinks(updatedLinks);
-
-    if (updatedLinks.length === 0) {
-      setDivHidden(false);
-    }
-  };
-
-  const saveButtonOpacity = links.length > 0 ? 100 : 30;
+  const { links, addLink, removeLink } = useLinkContext();
   const isSaveDisabled = links.length === 0;
+  const saveButtonOpacity = links.length > 0 ? 100 : 30;
 
   return (
     <div className="p-4">
@@ -57,7 +35,7 @@ export default function Body() {
                   onRemove={removeLink}
                 />
               ))}
-              {!isDivHidden && (
+              {!links.length > 0 && (
                 <div className="bg-lighter-gray px-7 py-11 grid gap-6 text-center rounded-xl">
                   <img className="m-auto" src={phoneIcon} alt="phone icon" />
                   <h2 className="font-bold text-dark-gray text-2xl">
