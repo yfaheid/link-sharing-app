@@ -14,6 +14,7 @@ export function LinkProvider({ children }) {
     const newLink = {
       id: linkCounter + 1,
       platform: "GitHub",
+      text: "", // Initialize text as an empty string
     };
 
     setLinks([...links, newLink]);
@@ -25,8 +26,30 @@ export function LinkProvider({ children }) {
     setLinks(updatedLinks);
   };
 
+  const updatePlatformForLink = (id, platform) => {
+    const updatedLinks = links.map((link) =>
+      link.id === id ? { ...link, platform } : link
+    );
+    setLinks(updatedLinks);
+  };
+
+  const updateTextForLink = (id, text) => {
+    const updatedLinks = links.map((link) =>
+      link.id === id ? { ...link, text } : link
+    );
+    setLinks(updatedLinks);
+  };
+
   return (
-    <LinkContext.Provider value={{ links, addLink, removeLink }}>
+    <LinkContext.Provider
+      value={{
+        links,
+        addLink,
+        removeLink,
+        updatePlatformForLink,
+        updateTextForLink,
+      }}
+    >
       {children}
     </LinkContext.Provider>
   );

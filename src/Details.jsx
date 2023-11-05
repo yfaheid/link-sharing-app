@@ -1,30 +1,32 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import imageIcon from "./assets/image.svg";
 import whiteImageIcon from "./assets/whiteimage.svg";
 import { useDetailsContext } from "./DetailsContext";
 
 export default function Details() {
-  const { userDetails, updateDetails } = useDetailsContext();
+  const { userDetails, updateDetails, uploadedImage, updateUploadedImage } =
+    useDetailsContext();
 
   const handleFirstNameChange = (e) => {
     updateDetails({ firstName: e.target.value });
   };
+
   const handleLastNameChange = (e) => {
     updateDetails({ lastName: e.target.value });
   };
+
   const handleEmailChange = (e) => {
     updateDetails({ email: e.target.value });
   };
 
   const fileInput = useRef(null);
-  const [uploadedImage, setUploadedImage] = useState(null);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = (event) => {
-        setUploadedImage(event.target.result);
+        updateUploadedImage(event.target.result); // Utilize the context function to update the image
       };
       reader.readAsDataURL(file);
     }

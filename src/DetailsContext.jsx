@@ -11,15 +11,23 @@ export function DetailsProvider({ children }) {
     firstName: "",
     lastName: "",
     email: "",
-    // ...other details
   });
+
+  const [uploadedImage, setUploadedImage] = useState(null); // Add the uploadedImage state
 
   const updateDetails = (newDetails) => {
     setUserDetails({ ...userDetails, ...newDetails });
   };
 
+  const updateUploadedImage = (imageUrl) => {
+    // Add the function to update the uploaded image
+    setUploadedImage(imageUrl);
+  };
+
   return (
-    <DetailsContext.Provider value={{ userDetails, updateDetails }}>
+    <DetailsContext.Provider
+      value={{ userDetails, updateDetails, uploadedImage, updateUploadedImage }}
+    >
       {children}
     </DetailsContext.Provider>
   );

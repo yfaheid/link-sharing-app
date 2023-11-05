@@ -17,6 +17,7 @@ import hashnodeIcon from "./assets/hashnode.svg";
 import stackoverflowIcon from "./assets/stackoverflow.svg";
 import arrowUpIcon from "./assets/arrowup.svg";
 import arrowDownIcon from "./assets/arrowdown.svg";
+import { useLinkContext } from "./LinksContext";
 
 export default function Links({ onRemove, id, linkNumber }) {
   const platforms = [
@@ -91,7 +92,10 @@ export default function Links({ onRemove, id, linkNumber }) {
       placeholder: "https://stackoverflow.com/users/123456/johnappleseed",
     },
   ];
-  const [selectedPlatform, setSelectedPlatform] = useState(platforms[0].name);
+
+  const { links, updatePlatformForLink, updateTextForLink } = useLinkContext();
+  const link = links.find((link) => link.id === id);
+
   const [showDropdown, setShowDropdown] = useState(false);
 
   const toggleDropdown = () => {
@@ -109,7 +113,7 @@ export default function Links({ onRemove, id, linkNumber }) {
       }
     };
 
-    handleResize(); // Calculate the initial width
+    handleResize();
 
     window.addEventListener("resize", handleResize);
     return () => {
@@ -143,9 +147,8 @@ export default function Links({ onRemove, id, linkNumber }) {
             <div className="absolute inset-y-0 left-0.5 flex items-center pl-3">
               <img
                 src={
-                  platforms.find(
-                    (platform) => platform.name === selectedPlatform
-                  ).logo
+                  platforms.find((platform) => platform.name === link.platform)
+                    .logo
                 }
                 alt="Platform Logo"
                 width="20"
@@ -158,7 +161,7 @@ export default function Links({ onRemove, id, linkNumber }) {
               onClick={toggleDropdown}
               ref={buttonRef}
             >
-              {selectedPlatform}
+              {link.platform}
               <span className="absolute top-5 right-3.5">
                 {showDropdown ? (
                   <img src={arrowUpIcon} alt="Arrow Up" />
@@ -171,7 +174,7 @@ export default function Links({ onRemove, id, linkNumber }) {
               <div className="absolute mt-2">
                 <Dropdown
                   handlePlatformSelection={(platform) => {
-                    setSelectedPlatform(platform);
+                    updatePlatformForLink(id, platform);
                     setShowDropdown(false);
                   }}
                   closeDropdown={() => setShowDropdown(false)}
@@ -193,10 +196,12 @@ export default function Links({ onRemove, id, linkNumber }) {
               className="pl-10 rounded-lg p-3 border-light-gray text-dark-gray border w-full"
               id={`link-${id}`}
               type="text"
+              value={link.text}
               placeholder={
-                platforms.find((platform) => platform.name === selectedPlatform)
+                platforms.find((platform) => platform.name === link.platform)
                   .placeholder
               }
+              onChange={(e) => updateTextForLink(id, e.target.value)}
             />
           </div>
         </div>
