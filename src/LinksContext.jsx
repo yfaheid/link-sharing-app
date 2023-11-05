@@ -14,7 +14,7 @@ export function LinkProvider({ children }) {
     const newLink = {
       id: linkCounter + 1,
       platform: "GitHub",
-      text: "", // Initialize text as an empty string
+      text: "",
     };
 
     setLinks([...links, newLink]);
