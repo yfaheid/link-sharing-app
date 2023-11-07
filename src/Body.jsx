@@ -11,8 +11,12 @@ export default function Body() {
   const [savePressed, setSavePressed] = useState(false);
 
   const handleSave = () => {
-    // Logic for saving data, set savePressed to true
     setSavePressed(true);
+  };
+
+  const addNewLink = () => {
+    setSavePressed(false); // Reset savePressed when adding a new link
+    addLink();
   };
 
   return (
@@ -29,7 +33,7 @@ export default function Body() {
             </p>
             <div className="grid gap-6">
               <button
-                onClick={addLink}
+                onClick={addNewLink}
                 className="font-bold border-dark-purple p-3 border rounded-lg text-dark-purple"
               >
                 + Add new link

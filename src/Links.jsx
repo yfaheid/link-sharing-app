@@ -24,72 +24,73 @@ export default function Links({ onRemove, id, linkNumber, savePressed }) {
     {
       name: "GitHub",
       logo: githubIcon,
-      placeholder: "https://github.com/johnappleseed",
+      placeholder: "e.g. https://www.github.com/johnappleseed",
     },
     {
       name: "Frontend Mentor",
       logo: frontendmentorIcon,
-      placeholder: "https://frontendmentor.io/profile/johnappleseed",
+      placeholder: "e.g. https://www.frontendmentor.io/profile/johnappleseed",
     },
     {
       name: "Twitter",
       logo: twitterIcon,
-      placeholder: "https://twitter.com/johnappleseed",
+      placeholder: "e.g. https://www.twitter.com/johnappleseed",
     },
     {
       name: "LinkedIn",
       logo: linkedinIcon,
-      placeholder: "https://linkedin.com/in/johnappleseed",
+      placeholder: "e.g. https://www.linkedin.com/in/johnappleseed",
     },
     {
       name: "YouTube",
       logo: youtubeIcon,
-      placeholder: "https://youtube.com/@johnappleseed",
+      placeholder: "e.g. https://www.youtube.com/@johnappleseed",
     },
     {
       name: "Facebook",
       logo: facebookIcon,
-      placeholder: "https://facebook.com/johnappleseed",
+      placeholder: "e.g. https://www.facebook.com/johnappleseed",
     },
     {
       name: "Twitch",
       logo: twitchIcon,
-      placeholder: "https://twitch.tv/johnappleseed",
+      placeholder: "e.g. https://www.twitch.tv/johnappleseed",
     },
     {
       name: "Dev.to",
       logo: devtoIcon,
-      placeholder: "https://dev.to/johnappleseed",
+      placeholder: "e.g. https://www.dev.to/johnappleseed",
     },
     {
       name: "Codewars",
       logo: codewarsIcon,
-      placeholder: "https://codewars.com/users/johnappleseed",
+      placeholder: "e.g. https://www.codewars.com/users/johnappleseed",
     },
     {
       name: "Codepen",
       logo: codepenIcon,
-      placeholder: "https://codepen.io/johnappleseed",
+      placeholder: "e.g. https://www.codepen.io/johnappleseed",
     },
     {
       name: "freeCodeCamp",
       logo: freecodecampIcon,
-      placeholder: "https://freecodecamp.org/johnappleseed",
+      placeholder: "e.g. https://www.freecodecamp.org/johnappleseed",
     },
     {
       name: "GitLab",
       logo: gitlabIcon,
-      placeholder: "https://gitlab.com/johnappleseed",
+      placeholder: "e.g. https://www.gitlab.com/johnappleseed",
     },
     {
       name: "Hashnode",
       logo: hashnodeIcon,
-      placeholder: "https://hashnode.com/@johnappleseed",
+      placeholder: "e.g. https://www.hashnode.com/@johnappleseed",
     },
     {
       name: "Stack Overflow",
       logo: stackoverflowIcon,
-      placeholder: "https://stackoverflow.com/users/123456/johnappleseed",
+      placeholder:
+        "e.g. https://www.stackoverflow.com/users/123456/johnappleseed",
     },
   ];
 
@@ -120,6 +121,23 @@ export default function Links({ onRemove, id, linkNumber, savePressed }) {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  const validateURL = (inputURL, platform) => {
+    const platformPlaceholder = platforms.find(
+      (p) => p.name === platform
+    )?.placeholder;
+
+    if (platformPlaceholder) {
+      const placeholderParts = platformPlaceholder.split("://");
+      if (placeholderParts.length > 1) {
+        const placeholderDomain = placeholderParts[1].split("/")[0];
+        const inputDomain = inputURL.split("://")[1]?.split("/")[0];
+
+        return placeholderDomain === inputDomain;
+      }
+    }
+    return false;
+  };
 
   return (
     <div className="bg-lighter-gray rounded-lg p-5 grid gap-3 relative">
@@ -194,7 +212,9 @@ export default function Links({ onRemove, id, linkNumber, savePressed }) {
             </div>
             <input
               className={`pl-10 rounded-lg p-3 border-light-gray text-dark-gray border w-full ${
-                savePressed && link.text.trim() === ""
+                savePressed &&
+                (link.text.trim() === "" ||
+                  !validateURL(link.text, link.platform))
                   ? "border-red text-red"
                   : ""
               }`}
@@ -207,11 +227,15 @@ export default function Links({ onRemove, id, linkNumber, savePressed }) {
               }
               onChange={(e) => updateTextForLink(id, e.target.value)}
             />
-            {savePressed && link.text.trim() === "" && (
-              <p className="text-red text-xs absolute bottom-14 right-2 ">
-                Can't be empty
+            {savePressed &&
+            (link.text.trim() === "" ||
+              !validateURL(link.text, link.platform)) ? (
+              <p className="text-red text-xs absolute bottom-14 right-2">
+                {link.text.trim() === ""
+                  ? "Can't be empty"
+                  : "Please check the URL"}
               </p>
-            )}
+            ) : null}
           </div>
         </div>
       </div>
