@@ -26,7 +26,7 @@ export default function Details() {
     if (file) {
       const reader = new FileReader();
       reader.onload = (event) => {
-        updateUploadedImage(event.target.result); // Utilize the context function to update the image
+        updateUploadedImage(event.target.result);
       };
       reader.readAsDataURL(file);
     }

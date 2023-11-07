@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import phoneIcon from "./assets/phone.svg";
 import Links from "./Links";
 import { useLinkContext } from "./LinksContext";
@@ -7,6 +7,13 @@ export default function Body() {
   const { links, addLink, removeLink } = useLinkContext();
   const isSaveDisabled = links.length === 0;
   const saveButtonOpacity = links.length > 0 ? 100 : 30;
+
+  const [savePressed, setSavePressed] = useState(false);
+
+  const handleSave = () => {
+    // Logic for saving data, set savePressed to true
+    setSavePressed(true);
+  };
 
   return (
     <div className="p-4">
@@ -29,6 +36,7 @@ export default function Body() {
               </button>
               {links.map((link, index) => (
                 <Links
+                  savePressed={savePressed}
                   key={link.id}
                   id={link.id}
                   linkNumber={index + 1}
@@ -54,6 +62,7 @@ export default function Body() {
       </div>
       <div className="bg-white p-4 flex justify-center items-center rounded-bl-xl rounded-br-xl">
         <button
+          onClick={handleSave}
           disabled={isSaveDisabled}
           style={{ opacity: saveButtonOpacity / 100 }}
           className="text-white w-full bg-dark-purple px-36 py-2.5 rounded-lg"

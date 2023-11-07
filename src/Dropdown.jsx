@@ -22,7 +22,7 @@ export default function Dropdown({
 }) {
   const selectPlatform = (platform) => {
     handlePlatformSelection(platform);
-    closeDropdown(); // Call the function to close the dropdown
+    closeDropdown();
   };
 
   const [width, setWidth] = useState(buttonWidth);
@@ -32,7 +32,7 @@ export default function Dropdown({
   }, [buttonWidth]);
 
   const dropdownStyle = {
-    width: width, // Use the updated width
+    width: width,
   };
 
   useEffect(() => {

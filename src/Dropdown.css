@@ -1,16 +1,13 @@
-/* Add this CSS to your stylesheet */
-/* For WebKit-based browsers (e.g., Chrome, Safari) */
 ::-webkit-scrollbar {
   width: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #c0c0c0; /* Change as needed */
+  background-color: #c0c0c0;
   border-radius: 4px;
 }
 
-/* For Firefox */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #c0c0c0 #f1f1f1; /* Change as needed */
+  scrollbar-color: #c0c0c0 #f1f1f1;
 }

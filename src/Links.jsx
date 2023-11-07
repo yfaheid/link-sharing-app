@@ -19,7 +19,7 @@ import arrowUpIcon from "./assets/arrowup.svg";
 import arrowDownIcon from "./assets/arrowdown.svg";
 import { useLinkContext } from "./LinksContext";
 
-export default function Links({ onRemove, id, linkNumber }) {
+export default function Links({ onRemove, id, linkNumber, savePressed }) {
   const platforms = [
     {
       name: "GitHub",
@@ -193,7 +193,11 @@ export default function Links({ onRemove, id, linkNumber }) {
               <img src={linksmallIcon} alt="icon" />
             </div>
             <input
-              className="pl-10 rounded-lg p-3 border-light-gray text-dark-gray border w-full"
+              className={`pl-10 rounded-lg p-3 border-light-gray text-dark-gray border w-full ${
+                savePressed && link.text.trim() === ""
+                  ? "border-red text-red"
+                  : ""
+              }`}
               id={`link-${id}`}
               type="text"
               value={link.text}
@@ -203,6 +207,11 @@ export default function Links({ onRemove, id, linkNumber }) {
               }
               onChange={(e) => updateTextForLink(id, e.target.value)}
             />
+            {savePressed && link.text.trim() === "" && (
+              <p className="text-red text-xs absolute bottom-14 right-2 ">
+                Can't be empty
+              </p>
+            )}
           </div>
         </div>
       </div>
