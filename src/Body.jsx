@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import phoneIcon from "./assets/phone.svg";
 import Links from "./Links";
+import saveIcon from "./assets/save.svg";
 import { useLinkContext } from "./LinksContext";
+import { validateURL } from "./UrlValidator";
 
 export default function Body() {
   const { links, addLink, removeLink } = useLinkContext();
@@ -9,9 +11,23 @@ export default function Body() {
   const saveButtonOpacity = links.length > 0 ? 100 : 30;
 
   const [savePressed, setSavePressed] = useState(false);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
   const handleSave = () => {
     setSavePressed(true);
+
+    const hasErrors = links.some(
+      (link) =>
+        link.text.trim() === "" || !validateURL(link.text, link.platform)
+    );
+
+    if (!hasErrors) {
+      setShowSuccessMessage(true);
+      setTimeout(() => {
+        setShowSuccessMessage(false);
+        setSavePressed(false); // Reset savePressed after showing success message
+      }, 3000);
+    }
   };
 
   const addNewLink = () => {
@@ -74,6 +90,12 @@ export default function Body() {
           Save
         </button>
       </div>
+      {showSuccessMessage && (
+        <div className="w-90 flex gap-2 text-lighter-gray font-medium bg-dark-gray p-4 rounded-xl text-sm fixed bottom-24 left-1/2 transform -translate-x-1/2">
+          <img src={saveIcon} alt="save icon" />
+          Your changes have been successfully saved!
+        </div>
+      )}
     </div>
   );
 }

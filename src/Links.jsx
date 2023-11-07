@@ -18,6 +18,7 @@ import stackoverflowIcon from "./assets/stackoverflow.svg";
 import arrowUpIcon from "./assets/arrowup.svg";
 import arrowDownIcon from "./assets/arrowdown.svg";
 import { useLinkContext } from "./LinksContext";
+import { validateURL } from "./UrlValidator";
 
 export default function Links({ onRemove, id, linkNumber, savePressed }) {
   const platforms = [
@@ -121,23 +122,6 @@ export default function Links({ onRemove, id, linkNumber, savePressed }) {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-
-  const validateURL = (inputURL, platform) => {
-    const platformPlaceholder = platforms.find(
-      (p) => p.name === platform
-    )?.placeholder;
-
-    if (platformPlaceholder) {
-      const placeholderParts = platformPlaceholder.split("://");
-      if (placeholderParts.length > 1) {
-        const placeholderDomain = placeholderParts[1].split("/")[0];
-        const inputDomain = inputURL.split("://")[1]?.split("/")[0];
-
-        return placeholderDomain === inputDomain;
-      }
-    }
-    return false;
-  };
 
   return (
     <div className="bg-lighter-gray rounded-lg p-5 grid gap-3 relative">

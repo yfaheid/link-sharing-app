@@ -20,6 +20,9 @@ export default {
       spacing: {
         15: "3.85rem",
       },
+      width: {
+        90: "22rem",
+      },
       minHeight: {
         "10v": "10vh",
         "20v": "20vh",
