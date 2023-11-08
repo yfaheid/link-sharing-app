@@ -123,6 +123,22 @@ export default function Links({ onRemove, id, linkNumber, savePressed }) {
     };
   }, []);
 
+  const [isLinkFocused, setIsLinkFocused] = useState(false);
+
+  const linkBoxShadow = {
+    boxShadow: isLinkFocused
+      ? "0px 0px 32px 0px rgba(99, 60, 255, 0.25)"
+      : "none",
+  };
+
+  const handleLinkFocus = () => {
+    setIsLinkFocused(true);
+  };
+
+  const handleLinkBlur = () => {
+    setIsLinkFocused(false);
+  };
+
   return (
     <div className="bg-lighter-gray rounded-lg p-5 grid gap-3 relative">
       <div className="flex justify-between">
@@ -195,7 +211,7 @@ export default function Links({ onRemove, id, linkNumber, savePressed }) {
               <img src={linksmallIcon} alt="icon" />
             </div>
             <input
-              className={`pl-10 rounded-lg p-3 border-light-gray text-dark-gray border w-full ${
+              className={`pl-10 rounded-lg p-3 caret-dark-purple border-light-gray text-dark-gray border w-full focus:border-dark-purple focus:outline-none focus:ring-0 ${
                 savePressed &&
                 (link.text.trim() === "" ||
                   !validateURL(link.text, link.platform))
@@ -204,6 +220,9 @@ export default function Links({ onRemove, id, linkNumber, savePressed }) {
               }`}
               id={`link-${id}`}
               type="text"
+              style={linkBoxShadow}
+              onFocus={handleLinkFocus}
+              onBlur={handleLinkBlur}
               value={link.text}
               placeholder={
                 platforms.find((platform) => platform.name === link.platform)

@@ -22,6 +22,7 @@ export default {
       },
       width: {
         90: "22rem",
+        85: "21.5rem",
       },
       minHeight: {
         "10v": "10vh",

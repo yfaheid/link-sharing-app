@@ -56,6 +56,52 @@ export default function Details() {
     }
   };
 
+  const [isFirstNameFocused, setIsFirstNameFocused] = useState(false);
+  const [isLastNameFocused, setIsLastNameFocused] = useState(false);
+  const [isEmailFocused, setIsEmailFocused] = useState(false);
+
+  const firstNameBoxShadow = {
+    boxShadow: isFirstNameFocused
+      ? "0px 0px 32px 0px rgba(99, 60, 255, 0.25)"
+      : "none",
+  };
+
+  const lastNameBoxShadow = {
+    boxShadow: isLastNameFocused
+      ? "0px 0px 32px 0px rgba(99, 60, 255, 0.25)"
+      : "none",
+  };
+
+  const emailBoxShadow = {
+    boxShadow: isEmailFocused
+      ? "0px 0px 32px 0px rgba(99, 60, 255, 0.25)"
+      : "none",
+  };
+
+  const handleFirstNameFocus = () => {
+    setIsFirstNameFocused(true);
+  };
+
+  const handleFirstNameBlur = () => {
+    setIsFirstNameFocused(false);
+  };
+
+  const handleLastNameFocus = () => {
+    setIsLastNameFocused(true);
+  };
+
+  const handleLastNameBlur = () => {
+    setIsLastNameFocused(false);
+  };
+
+  const handleEmailFocus = () => {
+    setIsEmailFocused(true);
+  };
+
+  const handleEmailBlur = () => {
+    setIsEmailFocused(false);
+  };
+
   return (
     <div className="p-4">
       <div className="bg-white min-h-77v py-7 px-5 rounded-tr-xl rounded-tl-xl border-opacity-20 border-b border-gray">
@@ -112,12 +158,15 @@ export default function Details() {
                   <label className="text-xs grid gap-1" htmlFor="first-name">
                     First name*
                     <input
-                      className={`border-light-gray border text-base pl-4 rounded-lg p-2.5 ${
+                      className={`border-light-gray caret-dark-purple border text-base pl-4 rounded-lg p-2.5 focus:border-dark-purple focus:outline-none focus:ring-0 shadow-dark-purple focus:shadow-md ${
                         firstNameError ? "border-red" : ""
                       }`}
                       id="first-name"
                       type="text"
                       value={userDetails.firstName}
+                      style={firstNameBoxShadow}
+                      onFocus={handleFirstNameFocus}
+                      onBlur={handleFirstNameBlur}
                       onChange={handleFirstNameChange}
                       required
                       placeholder="e.g. John"
@@ -129,11 +178,14 @@ export default function Details() {
                   <label className="text-xs grid gap-1" htmlFor="last-name">
                     Last name*
                     <input
-                      className={`border-light-gray border text-base pl-4 rounded-lg p-2.5 ${
+                      className={`border-light-gray caret-dark-purple border text-base pl-4 rounded-lg p-2.5 focus:border-dark-purple focus:outline-none focus:ring-0 ${
                         lastNameError ? "border-red" : ""
                       }`}
                       id="last-name"
                       type="text"
+                      style={lastNameBoxShadow}
+                      onFocus={handleLastNameFocus}
+                      onBlur={handleLastNameBlur}
                       value={userDetails.lastName}
                       onChange={handleLastNameChange}
                       required
@@ -146,9 +198,12 @@ export default function Details() {
                   <label className="text-xs grid gap-1" htmlFor="first-name">
                     Email
                     <input
-                      className="border-light-gray border text-base pl-4 rounded-lg p-2.5"
+                      className="border-light-gray caret-dark-purple border text-base pl-4 rounded-lg p-2.5 focus:border-dark-purple focus:outline-none focus:ring-0"
                       id="email"
                       type="email"
+                      style={emailBoxShadow}
+                      onFocus={handleEmailFocus}
+                      onBlur={handleEmailBlur}
                       value={userDetails.email}
                       onChange={handleEmailChange}
                       placeholder="e.g. email@example.com"

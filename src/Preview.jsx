@@ -64,7 +64,7 @@ export default function Preview() {
         </div>
       </div>
       {isCopied && (
-        <div className="w-11/12 flex gap-2 text-lighter-gray font-medium bg-dark-gray p-4 rounded-xl text-sm fixed bottom-8 left-1/2 transform -translate-x-1/2">
+        <div className="w-85 flex gap-2 text-lighter-gray font-medium bg-dark-gray p-4 rounded-xl text-sm fixed bottom-8 left-1/2 transform -translate-x-1/2">
           <img src={linkIcon} alt="link icon" />
           The link has been copied to your clipboard!
         </div>
