@@ -21,6 +21,10 @@ export function LinkProvider({ children }) {
     setLinkCounter(linkCounter + 1);
   };
 
+  const updateLinksOrder = (reorderedLinks) => {
+    setLinks(reorderedLinks);
+  };
+
   const removeLink = (id) => {
     const updatedLinks = links.filter((link) => link.id !== id);
     setLinks(updatedLinks);
@@ -48,6 +52,7 @@ export function LinkProvider({ children }) {
         removeLink,
         updatePlatformForLink,
         updateTextForLink,
+        updateLinksOrder,
       }}
     >
       {children}

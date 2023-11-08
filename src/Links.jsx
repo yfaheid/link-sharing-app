@@ -19,8 +19,15 @@ import arrowUpIcon from "./assets/arrowup.svg";
 import arrowDownIcon from "./assets/arrowdown.svg";
 import { useLinkContext } from "./LinksContext";
 import { validateURL } from "./UrlValidator";
+import { Draggable } from "react-beautiful-dnd";
 
-export default function Links({ onRemove, id, linkNumber, savePressed }) {
+export default function Links({
+  onRemove,
+  id,
+  linkNumber,
+  savePressed,
+  index,
+}) {
   const platforms = [
     {
       name: "GitHub",
@@ -140,108 +147,119 @@ export default function Links({ onRemove, id, linkNumber, savePressed }) {
   };
 
   return (
-    <div className="bg-lighter-gray rounded-lg p-5 grid gap-3 relative">
-      <div className="flex justify-between">
-        <div className="flex items-center gap-3">
-          <button className="grid gap-1">
-            <div className="bg-gray h-px w-3"></div>
-            <div className="bg-gray h-px w-3"></div>
-          </button>
-          <div className="text-gray font-bold">Link #{linkNumber}</div>
-        </div>
-        <button className="text-gray" onClick={() => onRemove(id)}>
-          Remove
-        </button>
-      </div>
-      <div className="grid gap-3">
-        <div className="grid gap-1 relative">
-          <label
-            htmlFor={`platform-button-${id}`}
-            className="text-xs text-dark-gray"
-          >
-            Platform
-          </label>
-          <div className="relative">
-            <div className="absolute inset-y-0 left-0.5 flex items-center pl-3">
-              <img
-                src={
-                  platforms.find((platform) => platform.name === link.platform)
-                    .logo
-                }
-                alt="Platform Logo"
-                width="20"
-                height="20"
-              />
-            </div>
-            <button
-              id={`platform-button-${id}`}
-              className="rounded-lg text-left pl-11 p-3 border-light-gray border bg-white text-dark-gray w-full"
-              onClick={toggleDropdown}
-              ref={buttonRef}
-            >
-              {link.platform}
-              <span className="absolute top-5 right-3.5">
-                {showDropdown ? (
-                  <img src={arrowUpIcon} alt="Arrow Up" />
-                ) : (
-                  <img src={arrowDownIcon} alt="Arrow Down" />
-                )}
-              </span>
-            </button>
-            {showDropdown && (
-              <div className="absolute mt-2">
-                <Dropdown
-                  handlePlatformSelection={(platform) => {
-                    updatePlatformForLink(id, platform);
-                    setShowDropdown(false);
-                  }}
-                  closeDropdown={() => setShowDropdown(false)}
-                  buttonWidth={buttonWidth}
-                />
+    <Draggable draggableId={id.toString()} index={index}>
+      {(provided) => (
+        <div
+          className="bg-lighter-gray rounded-lg p-5 grid gap-3 relative"
+          ref={provided.innerRef}
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
+        >
+          <div className="flex justify-between">
+            <div className="flex items-center gap-3">
+              <div className="grid gap-1">
+                <div className="bg-gray h-px w-3"></div>
+                <div className="bg-gray h-px w-3"></div>
               </div>
-            )}
-          </div>
-        </div>
-        <div className="grid gap-1 relative">
-          <label className="text-xs text-dark-gray" htmlFor={`link-${id}`}>
-            Link
-          </label>
-          <div className="relative">
-            <div className="absolute inset-y-0 left-0.5 flex items-center pl-3">
-              <img src={linksmallIcon} alt="icon" />
+              <div className="text-gray font-bold">Link #{linkNumber}</div>
             </div>
-            <input
-              className={`pl-10 rounded-lg p-3 caret-dark-purple border-light-gray text-dark-gray border w-full focus:border-dark-purple focus:outline-none focus:ring-0 ${
-                savePressed &&
+            <button className="text-gray" onClick={() => onRemove(id)}>
+              Remove
+            </button>
+          </div>
+          <div className="grid gap-3">
+            <div className="grid gap-1 relative">
+              <label
+                htmlFor={`platform-button-${id}`}
+                className="text-xs text-dark-gray"
+              >
+                Platform
+              </label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0.5 flex items-center pl-3">
+                  <img
+                    src={
+                      platforms.find(
+                        (platform) => platform.name === link.platform
+                      ).logo
+                    }
+                    alt="Platform Logo"
+                    width="20"
+                    height="20"
+                  />
+                </div>
+                <button
+                  id={`platform-button-${id}`}
+                  className="rounded-lg text-left pl-11 p-3 border-light-gray border bg-white text-dark-gray w-full"
+                  onClick={toggleDropdown}
+                  ref={buttonRef}
+                >
+                  {link.platform}
+                  <span className="absolute top-5 right-3.5">
+                    {showDropdown ? (
+                      <img src={arrowUpIcon} alt="Arrow Up" />
+                    ) : (
+                      <img src={arrowDownIcon} alt="Arrow Down" />
+                    )}
+                  </span>
+                </button>
+                {showDropdown && (
+                  <div className="absolute mt-2">
+                    <Dropdown
+                      handlePlatformSelection={(platform) => {
+                        updatePlatformForLink(id, platform);
+                        setShowDropdown(false);
+                      }}
+                      closeDropdown={() => setShowDropdown(false)}
+                      buttonWidth={buttonWidth}
+                    />
+                  </div>
+                )}
+              </div>
+            </div>
+            <div className="grid gap-1 relative">
+              <label className="text-xs text-dark-gray" htmlFor={`link-${id}`}>
+                Link
+              </label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0.5 flex items-center pl-3">
+                  <img src={linksmallIcon} alt="icon" />
+                </div>
+                <input
+                  className={`pl-10 rounded-lg p-3 caret-dark-purple border-light-gray text-dark-gray border w-full focus:border-dark-purple focus:outline-none focus:ring-0 ${
+                    savePressed &&
+                    (link.text.trim() === "" ||
+                      !validateURL(link.text, link.platform))
+                      ? "border-red text-red"
+                      : ""
+                  }`}
+                  id={`link-${id}`}
+                  type="text"
+                  style={linkBoxShadow}
+                  onFocus={handleLinkFocus}
+                  onBlur={handleLinkBlur}
+                  value={link.text}
+                  placeholder={
+                    platforms.find(
+                      (platform) => platform.name === link.platform
+                    ).placeholder
+                  }
+                  onChange={(e) => updateTextForLink(id, e.target.value)}
+                />
+                {savePressed &&
                 (link.text.trim() === "" ||
-                  !validateURL(link.text, link.platform))
-                  ? "border-red text-red"
-                  : ""
-              }`}
-              id={`link-${id}`}
-              type="text"
-              style={linkBoxShadow}
-              onFocus={handleLinkFocus}
-              onBlur={handleLinkBlur}
-              value={link.text}
-              placeholder={
-                platforms.find((platform) => platform.name === link.platform)
-                  .placeholder
-              }
-              onChange={(e) => updateTextForLink(id, e.target.value)}
-            />
-            {savePressed &&
-            (link.text.trim() === "" ||
-              !validateURL(link.text, link.platform)) ? (
-              <p className="text-red text-xs absolute bottom-14 right-2">
-                {link.text.trim() === ""
-                  ? "Can't be empty"
-                  : "Please check the URL"}
-              </p>
-            ) : null}
+                  !validateURL(link.text, link.platform)) ? (
+                  <p className="text-red text-xs absolute bottom-14 right-2">
+                    {link.text.trim() === ""
+                      ? "Can't be empty"
+                      : "Please check the URL"}
+                  </p>
+                ) : null}
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+      )}
+    </Draggable>
   );
 }

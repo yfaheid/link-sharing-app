@@ -4,9 +4,10 @@ import Links from "./Links";
 import saveIcon from "./assets/save.svg";
 import { useLinkContext } from "./LinksContext";
 import { validateURL } from "./UrlValidator";
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
 
 export default function Body() {
-  const { links, addLink, removeLink } = useLinkContext();
+  const { links, addLink, removeLink, updateLinksOrder } = useLinkContext();
   const isSaveDisabled = links.length === 0;
   const saveButtonOpacity = links.length > 0 ? 100 : 30;
 
@@ -35,6 +36,16 @@ export default function Body() {
     addLink();
   };
 
+  const onDragEnd = (result) => {
+    if (!result.destination) return; // If dropped outside the list
+
+    const reorderedLinks = Array.from(links);
+    const [removed] = reorderedLinks.splice(result.source.index, 1);
+    reorderedLinks.splice(result.destination.index, 0, removed);
+
+    updateLinksOrder(reorderedLinks);
+  };
+
   return (
     <div className="p-4">
       <div className="bg-white min-h-77v py-7 px-5 rounded-tr-xl rounded-tl-xl border-opacity-20 border-b border-gray">
@@ -54,15 +65,29 @@ export default function Body() {
               >
                 + Add new link
               </button>
-              {links.map((link, index) => (
-                <Links
-                  savePressed={savePressed}
-                  key={link.id}
-                  id={link.id}
-                  linkNumber={index + 1}
-                  onRemove={removeLink}
-                />
-              ))}
+              <DragDropContext onDragEnd={onDragEnd}>
+                <Droppable droppableId="onDragEnd">
+                  {(provided) => (
+                    <div
+                      className="grid gap-7"
+                      {...provided.droppableProps}
+                      ref={provided.innerRef}
+                    >
+                      {links.map((link, index) => (
+                        <Links
+                          savePressed={savePressed}
+                          key={link.id}
+                          id={link.id}
+                          linkNumber={index + 1}
+                          onRemove={removeLink}
+                          index={index}
+                        />
+                      ))}
+                      {provided.placeholder}
+                    </div>
+                  )}
+                </Droppable>
+              </DragDropContext>
               {!links.length > 0 && (
                 <div className="bg-lighter-gray px-7 py-11 grid gap-6 text-center rounded-xl">
                   <img className="m-auto" src={phoneIcon} alt="phone icon" />
