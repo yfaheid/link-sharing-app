@@ -14,6 +14,20 @@ import freecodecampIcon from "./assets/freecodecamp.svg";
 import gitlabIcon from "./assets/gitlab.svg";
 import hashnodeIcon from "./assets/hashnode.svg";
 import stackoverflowIcon from "./assets/stackoverflow.svg";
+import purpleGithubIcon from "./assets/purple icons/github.svg";
+import purpleFrontendmentorIcon from "./assets/purple icons/frontendmentor.svg";
+import purpleTwitterIcon from "./assets/purple icons/twitter.svg";
+import purpleLinkedinIcon from "./assets/purple icons/linkedin.svg";
+import purpleYoutubeIcon from "./assets/purple icons/youtube.svg";
+import purpleFacebookIcon from "./assets/purple icons/facebook.svg";
+import purpleTwitchIcon from "./assets/purple icons/twitch.svg";
+import purpleDevtoIcon from "./assets/purple icons/devto.svg";
+import purpleCodewarsIcon from "./assets/purple icons/codewars.svg";
+import purpleCodepenIcon from "./assets/purple icons/codepen.svg";
+import purpleFreecodecampIcon from "./assets/purple icons/freecodecamp.svg";
+import purpleGitlabIcon from "./assets/purple icons/gitlab.svg";
+import purpleHashnodeIcon from "./assets/purple icons/hashnode.svg";
+import purpleStackoverflowIcon from "./assets/purple icons/stackoverflow.svg";
 
 export default function Dropdown({
   handlePlatformSelection,
@@ -48,16 +62,39 @@ export default function Dropdown({
     };
   }, [buttonWidth, width]);
 
+  const [hoveredIcon, setHoveredIcon] = useState(null);
+
+  const handleMouseEnter = (icon) => {
+    setHoveredIcon(icon);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredIcon(null);
+  };
+
+  const isIconHovered = (icon) => hoveredIcon === icon;
+
   return (
     <div
       className="bg-white z-10 absolute overflow-y-auto h-60 rounded-lg shadow border border-zinc-300 items-start grid"
       style={dropdownStyle}
     >
       <button
+        onMouseEnter={() => handleMouseEnter("GitHub")}
+        onMouseLeave={handleMouseLeave}
         onClick={() => selectPlatform("GitHub")}
-        className="w-full gap-3 p-3 pr-32 h-full flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal"
+        className={`w-full gap-3 p-3 flex pl-3 items-center hover:text-dark-purple text-zinc-800 text-base font-normal leading-normal`}
       >
-        <img src={githubIcon} alt="GitHub icon" />
+        <img
+          src={
+            isIconHovered("GitHub")
+              ? purpleGithubIcon
+              : isIconHovered("GitHub")
+              ? purpleGithubIcon
+              : githubIcon
+          }
+          alt="GitHub icon"
+        />
         GitHub
       </button>
       <div
@@ -65,10 +102,19 @@ export default function Dropdown({
         style={{ width: "95%", margin: "0 auto" }}
       />
       <button
+        onMouseEnter={() => handleMouseEnter("Frontend Mentor")}
+        onMouseLeave={handleMouseLeave}
         onClick={() => selectPlatform("Frontend Mentor")}
-        className="w-full gap-3 p-3 flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal"
+        className="w-full gap-3 p-3 flex pl-3 items-center hover:text-dark-purple text-zinc-800 text-base font-normal leading-normal"
       >
-        <img src={frontendmentorIcon} alt="Frontend Mentor icon" />
+        <img
+          src={
+            isIconHovered("Frontend Mentor")
+              ? purpleFrontendmentorIcon
+              : frontendmentorIcon
+          }
+          alt="Frontend Mentor icon"
+        />
         Frontend Mentor
       </button>
       <div
@@ -76,10 +122,15 @@ export default function Dropdown({
         style={{ width: "95%", margin: "0 auto" }}
       />
       <button
+        onMouseEnter={() => handleMouseEnter("Twitter")}
+        onMouseLeave={handleMouseLeave}
         onClick={() => selectPlatform("Twitter")}
-        className="w-full gap-3 p-3 flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal"
+        className="w-full gap-3 p-3 flex pl-3 items-center hover:text-dark-purple text-zinc-800 text-base font-normal leading-normal"
       >
-        <img src={twitterIcon} alt="Twitter icon" />
+        <img
+          src={isIconHovered("Twitter") ? purpleTwitterIcon : twitterIcon}
+          alt="Twitter icon"
+        />
         Twitter
       </button>
       <div
@@ -87,10 +138,15 @@ export default function Dropdown({
         style={{ width: "95%", margin: "0 auto" }}
       />
       <button
+        onMouseEnter={() => handleMouseEnter("LinkedIn")}
+        onMouseLeave={handleMouseLeave}
         onClick={() => selectPlatform("LinkedIn")}
-        className="w-full gap-3 p-3 flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal"
+        className="w-full gap-3 p-3 flex pl-3 items-center hover:text-dark-purple text-zinc-800 text-base font-normal leading-normal"
       >
-        <img src={linkedinIcon} alt="LinkedIn icon" />
+        <img
+          src={isIconHovered("LinkedIn") ? purpleLinkedinIcon : linkedinIcon}
+          alt="LinkedIn icon"
+        />
         LinkedIn
       </button>
       <div
@@ -98,10 +154,15 @@ export default function Dropdown({
         style={{ width: "95%", margin: "0 auto" }}
       />
       <button
+        onMouseEnter={() => handleMouseEnter("YouTube")}
+        onMouseLeave={handleMouseLeave}
         onClick={() => selectPlatform("YouTube")}
-        className="w-full gap-3 p-3 flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal"
+        className="w-full gap-3 p-3 flex pl-3 items-center hover:text-dark-purple text-zinc-800 text-base font-normal leading-normal"
       >
-        <img src={youtubeIcon} alt="YouTube icon" />
+        <img
+          src={isIconHovered("YouTube") ? purpleYoutubeIcon : youtubeIcon}
+          alt="YouTube icon"
+        />
         YouTube
       </button>
       <div
@@ -109,10 +170,15 @@ export default function Dropdown({
         style={{ width: "95%", margin: "0 auto" }}
       />
       <button
+        onMouseEnter={() => handleMouseEnter("Facebook")}
+        onMouseLeave={handleMouseLeave}
         onClick={() => selectPlatform("Facebook")}
-        className="w-full gap-3 p-3 flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal"
+        className="w-full gap-3 p-3 flex pl-3 items-center hover:text-dark-purple text-zinc-800 text-base font-normal leading-normal"
       >
-        <img src={facebookIcon} alt="Facebook icon" />
+        <img
+          src={isIconHovered("Facebook") ? purpleFacebookIcon : facebookIcon}
+          alt="Facebook icon"
+        />
         Facebook
       </button>
       <div
@@ -120,10 +186,15 @@ export default function Dropdown({
         style={{ width: "95%", margin: "0 auto" }}
       />
       <button
+        onMouseEnter={() => handleMouseEnter("Twitch")}
+        onMouseLeave={handleMouseLeave}
         onClick={() => selectPlatform("Twitch")}
-        className="w-full gap-3 p-3 flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal"
+        className="w-full gap-3 p-3 flex pl-3 items-center hover:text-dark-purple text-zinc-800 text-base font-normal leading-normal"
       >
-        <img src={twitchIcon} alt="Twitch icon" />
+        <img
+          src={isIconHovered("Twitch") ? purpleTwitchIcon : twitchIcon}
+          alt="Twitch icon"
+        />
         Twitch
       </button>
       <div
@@ -131,10 +202,15 @@ export default function Dropdown({
         style={{ width: "95%", margin: "0 auto" }}
       />
       <button
+        onMouseEnter={() => handleMouseEnter("Dev.to")}
+        onMouseLeave={handleMouseLeave}
         onClick={() => selectPlatform("Dev.to")}
-        className="w-full gap-3 p-3 flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal"
+        className="w-full gap-3 p-3 flex pl-3 items-center hover:text-dark-purple text-zinc-800 text-base font-normal leading-normal"
       >
-        <img src={devtoIcon} alt="Dev.to icon" />
+        <img
+          src={isIconHovered("Dev.to") ? purpleDevtoIcon : devtoIcon}
+          alt="Dev.to icon"
+        />
         Dev.to
       </button>
       <div
@@ -142,10 +218,15 @@ export default function Dropdown({
         style={{ width: "95%", margin: "0 auto" }}
       />
       <button
+        onMouseEnter={() => handleMouseEnter("Codewars")}
+        onMouseLeave={handleMouseLeave}
         onClick={() => selectPlatform("Codewars")}
-        className="w-full gap-3 p-3 flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal"
+        className="w-full gap-3 p-3 flex pl-3 items-center hover:text-dark-purple text-zinc-800 text-base font-normal leading-normal"
       >
-        <img src={codewarsIcon} alt="Codewars icon" />
+        <img
+          src={isIconHovered("Codewars") ? purpleCodewarsIcon : codewarsIcon}
+          alt="Codewars icon"
+        />
         Codewars
       </button>
       <div
@@ -153,10 +234,15 @@ export default function Dropdown({
         style={{ width: "95%", margin: "0 auto" }}
       />
       <button
+        onMouseEnter={() => handleMouseEnter("Codepen")}
+        onMouseLeave={handleMouseLeave}
         onClick={() => selectPlatform("Codepen")}
-        className="w-full gap-3 p-3 flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal"
+        className="w-full gap-3 p-3 flex pl-3 items-center hover:text-dark-purple text-zinc-800 text-base font-normal leading-normal"
       >
-        <img src={codepenIcon} alt="Codepen icon" />
+        <img
+          src={isIconHovered("Codepen") ? purpleCodepenIcon : codepenIcon}
+          alt="Codepen icon"
+        />
         Codepen
       </button>
       <div
@@ -164,10 +250,19 @@ export default function Dropdown({
         style={{ width: "95%", margin: "0 auto" }}
       />
       <button
+        onMouseEnter={() => handleMouseEnter("freeCodeCamp")}
+        onMouseLeave={handleMouseLeave}
         onClick={() => selectPlatform("freeCodeCamp")}
-        className="w-full gap-3 p-3 flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal"
+        className="w-full gap-3 p-3 flex pl-3 items-center hover:text-dark-purple text-zinc-800 text-base font-normal leading-normal"
       >
-        <img src={freecodecampIcon} alt="freeCodeCamp icon" />
+        <img
+          src={
+            isIconHovered("freeCodeCamp")
+              ? purpleFreecodecampIcon
+              : freecodecampIcon
+          }
+          alt="freeCodeCamp icon"
+        />
         freeCodeCamp
       </button>
       <div
@@ -175,10 +270,15 @@ export default function Dropdown({
         style={{ width: "95%", margin: "0 auto" }}
       />
       <button
+        onMouseEnter={() => handleMouseEnter("GitLab")}
+        onMouseLeave={handleMouseLeave}
         onClick={() => selectPlatform("GitLab")}
-        className="w-full gap-3 p-3 flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal"
+        className="w-full gap-3 p-3 flex pl-3 items-center hover:text-dark-purple text-zinc-800 text-base font-normal leading-normal"
       >
-        <img src={gitlabIcon} alt="GitLab icon" />
+        <img
+          src={isIconHovered("GitLab") ? purpleGitlabIcon : gitlabIcon}
+          alt="GitLab icon"
+        />
         GitLab
       </button>
       <div
@@ -186,10 +286,15 @@ export default function Dropdown({
         style={{ width: "95%", margin: "0 auto" }}
       />
       <button
+        onMouseEnter={() => handleMouseEnter("Hashnode")}
+        onMouseLeave={handleMouseLeave}
         onClick={() => selectPlatform("Hashnode")}
-        className="w-full gap-3 p-3 flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal"
+        className="w-full gap-3 p-3 flex pl-3 items-center hover:text-dark-purple text-zinc-800 text-base font-normal leading-normal"
       >
-        <img src={hashnodeIcon} alt="Hashnode icon" />
+        <img
+          src={isIconHovered("Hashnode") ? purpleHashnodeIcon : hashnodeIcon}
+          alt="Hashnode icon"
+        />
         Hashnode
       </button>
       <div
@@ -197,10 +302,19 @@ export default function Dropdown({
         style={{ width: "95%", margin: "0 auto" }}
       />
       <button
+        onMouseEnter={() => handleMouseEnter("Stack Overflow")}
+        onMouseLeave={handleMouseLeave}
         onClick={() => selectPlatform("Stack Overflow")}
-        className="w-full gap-3 p-3 flex pl-3 items-center text-zinc-800 text-base font-normal leading-normal"
+        className="w-full gap-3 p-3 flex pl-3 items-center hover:text-dark-purple text-zinc-800 text-base font-normal leading-normal"
       >
-        <img src={stackoverflowIcon} alt="Stack Overflow icon" />
+        <img
+          src={
+            isIconHovered("Stack Overflow")
+              ? purpleStackoverflowIcon
+              : stackoverflowIcon
+          }
+          alt="Stack Overflow icon"
+        />
         Stack Overflow
       </button>
     </div>

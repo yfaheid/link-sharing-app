@@ -62,7 +62,7 @@ export default function Body() {
             <div className="grid gap-3">
               <button
                 onClick={addNewLink}
-                className="font-bold border-dark-purple p-3 border rounded-lg text-dark-purple"
+                className="font-bold hover:bg-light-purple border-dark-purple p-3 border rounded-lg text-dark-purple"
               >
                 + Add new link
               </button>
@@ -110,8 +110,22 @@ export default function Body() {
         <button
           onClick={handleSave}
           disabled={isSaveDisabled}
-          style={{ opacity: saveButtonOpacity / 100 }}
-          className="text-white w-full bg-dark-purple px-36 py-2.5 rounded-lg"
+          style={{
+            opacity: saveButtonOpacity / 100,
+            boxShadow: "none",
+          }}
+          onMouseOver={(e) => {
+            if (!isSaveDisabled) {
+              e.currentTarget.style.boxShadow =
+                "0px 0px 32px 0px rgba(99, 60, 255, 0.25)";
+            }
+          }}
+          onMouseOut={(e) => {
+            e.currentTarget.style.boxShadow = "none";
+          }}
+          className={`text-white w-full ${
+            !isSaveDisabled ? "hover:bg-[#BEADFF]" : ""
+          } bg-dark-purple px-36 py-2.5 rounded-lg`}
         >
           Save
         </button>

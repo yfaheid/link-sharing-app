@@ -218,7 +218,17 @@ export default function Details() {
       <div className="bg-white p-4 flex justify-center items-center rounded-bl-xl rounded-br-xl">
         <button
           onClick={handleSave}
-          className="text-white w-full bg-dark-purple px-36 py-2.5 rounded-lg"
+          className="text-white w-full hover:bg-[#BEADFF] bg-dark-purple px-36 py-2.5 rounded-lg"
+          style={{
+            boxShadow: "none",
+          }}
+          onMouseOver={(e) => {
+            e.currentTarget.style.boxShadow =
+              "0px 0px 32px 0px rgba(99, 60, 255, 0.25)";
+          }}
+          onMouseOut={(e) => {
+            e.currentTarget.style.boxShadow = "none";
+          }}
         >
           Save
         </button>

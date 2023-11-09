@@ -12,6 +12,8 @@ import { Link } from "react-router-dom";
 export default function Header() {
   const [showDetails, setShowDetails] = useState(false);
   const [showBody, setShowBody] = useState(true);
+  const [isLinkIconHovered, setIsLinkIconHovered] = useState(false);
+  const [isUserIconHovered, setIsUserIconHovered] = useState(false);
 
   const toggleIcon = (selected) => {
     setShowDetails(selected);
@@ -27,24 +29,31 @@ export default function Header() {
             className={`bg-${
               showBody ? "dark" : "opacity"
             }-purple bg-opacity-10 px-7 rounded-lg`}
+            onMouseEnter={() => setIsLinkIconHovered(true)}
+            onMouseLeave={() => setIsLinkIconHovered(false)}
             onClick={() => toggleIcon(false)}
           >
-            <img src={showBody ? purpleLinkIcon : linkIcon} alt="link icon" />
+            <img
+              src={isLinkIconHovered || showBody ? purpleLinkIcon : linkIcon}
+              alt="link icon"
+            />
           </button>
           <button
             className={`bg-${
               showDetails ? "dark" : "opacity"
             }-purple bg-opacity-10 px-7 rounded-lg`}
+            onMouseEnter={() => setIsUserIconHovered(true)}
+            onMouseLeave={() => setIsUserIconHovered(false)}
             onClick={() => toggleIcon(true)}
           >
             <img
-              src={showDetails ? purpleUserIcon : userIcon}
+              src={isUserIconHovered || showDetails ? purpleUserIcon : userIcon}
               alt="user icon"
             />
           </button>
         </div>
         <Link to="/preview">
-          <button className="border border-dark-purple py-2.5 px-4 rounded-lg">
+          <button className="border hover:bg-light-purple border-dark-purple py-2.5 px-4 rounded-lg">
             <img src={eyeIcon} alt="eye icon" />
           </button>
         </Link>
