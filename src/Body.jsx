@@ -4,7 +4,8 @@ import Links from "./Links";
 import saveIcon from "./assets/save.svg";
 import { useLinkContext } from "./LinksContext";
 import { validateURL } from "./UrlValidator";
-import { DragDropContext, Droppable } from "react-beautiful-dnd";
+import { DragDropContext } from "react-beautiful-dnd";
+import StrictModeDroppable from "./StrictModeDroppable";
 
 export default function Body() {
   const { links, addLink, removeLink, updateLinksOrder } = useLinkContext();
@@ -26,18 +27,18 @@ export default function Body() {
       setShowSuccessMessage(true);
       setTimeout(() => {
         setShowSuccessMessage(false);
-        setSavePressed(false); // Reset savePressed after showing success message
+        setSavePressed(false);
       }, 3000);
     }
   };
 
   const addNewLink = () => {
-    setSavePressed(false); // Reset savePressed when adding a new link
+    setSavePressed(false);
     addLink();
   };
 
   const onDragEnd = (result) => {
-    if (!result.destination) return; // If dropped outside the list
+    if (!result.destination) return;
 
     const reorderedLinks = Array.from(links);
     const [removed] = reorderedLinks.splice(result.source.index, 1);
@@ -58,7 +59,7 @@ export default function Body() {
               Add/edit/remove links below and then share all your profiles with
               the world!
             </p>
-            <div className="grid gap-6">
+            <div className="grid gap-3">
               <button
                 onClick={addNewLink}
                 className="font-bold border-dark-purple p-3 border rounded-lg text-dark-purple"
@@ -66,7 +67,7 @@ export default function Body() {
                 + Add new link
               </button>
               <DragDropContext onDragEnd={onDragEnd}>
-                <Droppable droppableId="onDragEnd">
+                <StrictModeDroppable droppableId={`links-${links.length}`}>
                   {(provided) => (
                     <div
                       className="grid gap-7"
@@ -86,7 +87,7 @@ export default function Body() {
                       {provided.placeholder}
                     </div>
                   )}
-                </Droppable>
+                </StrictModeDroppable>
               </DragDropContext>
               {!links.length > 0 && (
                 <div className="bg-lighter-gray px-7 py-11 grid gap-6 text-center rounded-xl">
