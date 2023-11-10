@@ -179,7 +179,7 @@ export default function Details() {
                       placeholder="e.g. John"
                     />
                     {firstNameError && (
-                      <p className="text-red text-xs absolute right-16 md:right-20">
+                      <p className="text-red text-xs absolute right-16 md:right-24">
                         Can't be empty
                       </p>
                     )}
@@ -204,7 +204,7 @@ export default function Details() {
                       placeholder="e.g. Appleseed"
                     />
                     {lastNameError && (
-                      <p className="text-red text-xs absolute right-16 md:right-20">
+                      <p className="text-red text-xs absolute right-16 md:right-24">
                         Can't be empty
                       </p>
                     )}
