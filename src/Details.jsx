@@ -104,7 +104,7 @@ export default function Details() {
 
   return (
     <div className="p-4">
-      <div className="bg-white min-h-77v py-7 px-5 rounded-tr-xl rounded-tl-xl border-opacity-20 border-b border-gray">
+      <div className="bg-white min-h-77v py-7 px-5 rounded-tr-xl rounded-tl-xl border-b border-light-gray">
         <div className="grid gap-2">
           <h1 className="text-2xl font-bold text-dark-gray">Profile Details</h1>
           <div className="grid gap-10">

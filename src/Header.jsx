@@ -21,40 +21,62 @@ export default function Header() {
   };
 
   return (
-    <div>
-      <div className="flex justify-evenly gap-12 p-4 bg-white rounded-br-xl rounded-bl-xl">
-        <img src={devlinksLogo} alt="devlinks logo" />
+    <div className="md:grid md:gap-6 md:p-6">
+      <div className="flex justify-evenly gap-12 p-4 bg-white rounded-br-xl rounded-bl-xl md:rounded-xl">
+        <div className="flex items-center gap-1">
+          <img src={devlinksLogo} alt="devlinks logo" />
+          <p className="hidden md:inline text-3xl font-bold text-dark-gray">
+            devlinks
+          </p>
+        </div>
         <div className="flex">
           <button
-            className={`bg-${
+            className={`hover:text-dark-purple text-gray bg-${
               showBody ? "dark" : "opacity"
             }-purple bg-opacity-10 px-7 rounded-lg`}
             onMouseEnter={() => setIsLinkIconHovered(true)}
             onMouseLeave={() => setIsLinkIconHovered(false)}
             onClick={() => toggleIcon(false)}
           >
-            <img
-              src={isLinkIconHovered || showBody ? purpleLinkIcon : linkIcon}
-              alt="link icon"
-            />
+            <div className="flex gap-2 ">
+              <img
+                src={isLinkIconHovered || showBody ? purpleLinkIcon : linkIcon}
+                alt="link icon"
+              />
+              <p
+                className={`font-bold ${
+                  showBody ? "text-dark-purple" : ""
+                } hidden md:inline`}
+              >
+                Links
+              </p>
+            </div>
           </button>
           <button
-            className={`bg-${
+            className={`focus:text-dark-purple hover:text-dark-purple text-gray bg-${
               showDetails ? "dark" : "opacity"
             }-purple bg-opacity-10 px-7 rounded-lg`}
             onMouseEnter={() => setIsUserIconHovered(true)}
             onMouseLeave={() => setIsUserIconHovered(false)}
             onClick={() => toggleIcon(true)}
           >
-            <img
-              src={isUserIconHovered || showDetails ? purpleUserIcon : userIcon}
-              alt="user icon"
-            />
+            <div className="flex gap-2 ">
+              <img
+                src={
+                  isUserIconHovered || showDetails ? purpleUserIcon : userIcon
+                }
+                alt="user icon"
+              />
+              <p className="font-bold hidden md:inline">Profile Details</p>
+            </div>
           </button>
         </div>
         <Link to="/preview">
-          <button className="border hover:bg-light-purple border-dark-purple py-2.5 px-4 rounded-lg">
-            <img src={eyeIcon} alt="eye icon" />
+          <button className="border hover:bg-light-purple border-dark-purple py-2.5 px-4 md:px-6 rounded-lg">
+            <img className="md:hidden" src={eyeIcon} alt="eye icon" />
+            <p className="hidden md:inline text-dark-purple font-bold">
+              Preview
+            </p>
           </button>
         </Link>
       </div>
