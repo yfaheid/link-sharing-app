@@ -160,7 +160,7 @@ export default function Details() {
               <div className="bg-lighter-gray p-5 grid gap-4 rounded-xl">
                 <div className="grid gap-3">
                   <label
-                    className="text-xs text-dark-gray grid gap-1 md:text-gray md:text-base md:flex md:justify-between md:items-center"
+                    className="text-xs text-dark-gray grid gap-1 md:text-gray md:text-base md:flex md:justify-between md:items-center relative"
                     htmlFor="first-name"
                   >
                     First name*
@@ -179,13 +179,14 @@ export default function Details() {
                       placeholder="e.g. John"
                     />
                     {firstNameError && (
-                      <p className="text-red text-xs absolute right-16 md:right-24">
+                      <p className="text-red text-xs absolute right-3">
                         Can't be empty
                       </p>
                     )}
                   </label>
+
                   <label
-                    className="text-xs text-dark-gray grid gap-1 md:text-gray md:text-base md:flex md:justify-between md:items-center"
+                    className="text-xs text-dark-gray grid gap-1 md:text-gray md:text-base md:flex md:justify-between md:items-center relative"
                     htmlFor="last-name"
                   >
                     Last name*
@@ -204,7 +205,7 @@ export default function Details() {
                       placeholder="e.g. Appleseed"
                     />
                     {lastNameError && (
-                      <p className="text-red text-xs absolute right-16 md:right-24">
+                      <p className="text-red text-xs absolute right-3">
                         Can't be empty
                       </p>
                     )}

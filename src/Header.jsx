@@ -22,7 +22,7 @@ export default function Header() {
 
   return (
     <div className="md:grid md:gap-6 md:p-6">
-      <div className="flex justify-evenly gap-12 p-4 bg-white rounded-br-xl rounded-bl-xl md:rounded-xl">
+      <div className="flex justify-between p-4 bg-white rounded-br-xl rounded-bl-xl md:rounded-xl">
         <div className="flex items-center gap-1">
           <img src={devlinksLogo} alt="devlinks logo" />
           <p className="hidden md:inline text-3xl font-bold text-dark-gray">
