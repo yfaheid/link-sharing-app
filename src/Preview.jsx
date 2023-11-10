@@ -23,7 +23,7 @@ export default function Preview() {
     <div className="grid gap-12 font-instrument">
       <div className="flex justify-center gap-4 p-5">
         <Link to="/">
-          <button className="text-dark-purple font-semibold border border-dark-purple rounded-lg px-6 py-2.5">
+          <button className="hover:bg-light-purple text-dark-purple font-semibold border border-dark-purple rounded-lg px-6 py-2.5">
             Back to Editor
           </button>
         </Link>
@@ -32,7 +32,19 @@ export default function Preview() {
           text="http://localhost:5173/preview"
           onCopy={copyToClipboard}
         >
-          <button className="text-white font-medium bg-dark-purple rounded-lg px-10 py-2.5">
+          <button
+            style={{
+              boxShadow: "none",
+            }}
+            onMouseOver={(e) => {
+              e.currentTarget.style.boxShadow =
+                "0px 0px 32px 0px rgba(99, 60, 255, 0.25)";
+            }}
+            onMouseOut={(e) => {
+              e.currentTarget.style.boxShadow = "none";
+            }}
+            className="text-white hover:bg-[#BEADFF] font-medium bg-dark-purple rounded-lg px-10 py-2.5"
+          >
             Share Link
           </button>
         </CopyToClipboard>

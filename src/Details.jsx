@@ -103,62 +103,69 @@ export default function Details() {
   };
 
   return (
-    <div className="p-4">
-      <div className="bg-white min-h-77v py-7 px-5 rounded-tr-xl rounded-tl-xl border-b border-light-gray">
+    <div className="p-4 md:p-0">
+      <div className="bg-white max-h-77v overflow-y-scroll md:min-h-75v md:max-h-75v md:px-10 md:py-12 py-7 px-5 rounded-tr-xl rounded-tl-xl">
         <div className="grid gap-2">
-          <h1 className="text-2xl font-bold text-dark-gray">Profile Details</h1>
+          <h1 className="text-2xl font-bold text-dark-gray md:text-3xl">
+            Profile Details
+          </h1>
           <div className="grid gap-10">
             <p className="text-gray">
               Add your details to create a personal touch to your profile.
             </p>
             <div className="grid gap-6">
-              <div className="bg-lighter-gray p-5 grid gap-4 rounded-xl">
+              <div className="bg-lighter-gray p-5 grid gap-4 md:justify-between rounded-xl md:flex md:items-center">
                 <h2 className="text-gray text-base">Profile picture</h2>
-                <div className="grid gap-6">
-                  <button
-                    className="bg-light-purple py-15 w-9/12 rounded-xl grid gap-2 justify-center relative"
-                    onClick={handleUploadClick}
-                  >
-                    <div
-                      className="absolute w-full h-full rounded-xl z-10"
-                      style={{
-                        backgroundImage: `url(${uploadedImage})`,
-                        backgroundSize: "cover",
-                        backgroundPosition: "center",
-                        filter: "brightness(70%)",
-                      }}
-                    ></div>
-                    <img
-                      src={uploadedImage ? whiteImageIcon : imageIcon}
-                      alt="image icon"
-                      className="m-auto z-20"
-                    />
-                    <p
-                      className={`${
-                        uploadedImage ? "text-white" : "text-dark-purple"
-                      } font-bold  z-20`}
+                <div className="md:flex md:items-center grid gap-6 md:gap-5">
+                  <div className="grid gap-6">
+                    <button
+                      className="bg-light-purple py-15 w-9/12 rounded-xl grid gap-2 md:w-48 justify-center relative"
+                      onClick={handleUploadClick}
                     >
-                      {uploadedImage ? "Change Image" : "+ Upload Image"}
-                    </p>
-                  </button>
-                  <input
-                    ref={fileInput}
-                    type="file"
-                    className="hidden"
-                    accept="image/png, image/jpeg"
-                    onChange={handleImageChange}
-                  />
+                      <div
+                        className="absolute w-full h-full rounded-xl z-10"
+                        style={{
+                          backgroundImage: `url(${uploadedImage})`,
+                          backgroundSize: "cover",
+                          backgroundPosition: "center",
+                          filter: "brightness(70%)",
+                        }}
+                      ></div>
+                      <img
+                        src={uploadedImage ? whiteImageIcon : imageIcon}
+                        alt="image icon"
+                        className="m-auto z-20"
+                      />
+                      <p
+                        className={`${
+                          uploadedImage ? "text-white" : "text-dark-purple"
+                        } font-bold  z-20`}
+                      >
+                        {uploadedImage ? "Change Image" : "+ Upload Image"}
+                      </p>
+                    </button>
+                    <input
+                      ref={fileInput}
+                      type="file"
+                      className="hidden"
+                      accept="image/png, image/jpeg"
+                      onChange={handleImageChange}
+                    />
+                  </div>
+                  <p className="text-gray text-xs md:w-32">
+                    Image must be below 1024x1024px. Use PNG or JPG format.
+                  </p>
                 </div>
-                <p className="text-gray text-xs">
-                  Image must be below 1024x1024px. Use PNG or JPG format.
-                </p>
               </div>
               <div className="bg-lighter-gray p-5 grid gap-4 rounded-xl">
                 <div className="grid gap-3">
-                  <label className="text-xs grid gap-1" htmlFor="first-name">
+                  <label
+                    className="text-xs text-dark-gray grid gap-1 md:text-gray md:text-base md:flex md:justify-between md:items-center"
+                    htmlFor="first-name"
+                  >
                     First name*
                     <input
-                      className={`border-light-gray caret-dark-purple border text-base pl-4 rounded-lg p-2.5 focus:border-dark-purple focus:outline-none focus:ring-0 shadow-dark-purple focus:shadow-md ${
+                      className={`border-light-gray caret-dark-purple border text-base pl-4 rounded-lg p-2.5 focus:border-dark-purple focus:outline-none focus:ring-0 shadow-dark-purple focus:shadow-md md:w-80 ${
                         firstNameError ? "border-red" : ""
                       }`}
                       id="first-name"
@@ -172,13 +179,18 @@ export default function Details() {
                       placeholder="e.g. John"
                     />
                     {firstNameError && (
-                      <p className="text-red text-xs">Can't be empty</p>
+                      <p className="text-red text-xs absolute right-16 md:right-20">
+                        Can't be empty
+                      </p>
                     )}
                   </label>
-                  <label className="text-xs grid gap-1" htmlFor="last-name">
+                  <label
+                    className="text-xs text-dark-gray grid gap-1 md:text-gray md:text-base md:flex md:justify-between md:items-center"
+                    htmlFor="last-name"
+                  >
                     Last name*
                     <input
-                      className={`border-light-gray caret-dark-purple border text-base pl-4 rounded-lg p-2.5 focus:border-dark-purple focus:outline-none focus:ring-0 ${
+                      className={`border-light-gray caret-dark-purple border text-base pl-4 rounded-lg p-2.5 focus:border-dark-purple focus:outline-none focus:ring-0 md:w-80 ${
                         lastNameError ? "border-red" : ""
                       }`}
                       id="last-name"
@@ -192,13 +204,18 @@ export default function Details() {
                       placeholder="e.g. Appleseed"
                     />
                     {lastNameError && (
-                      <p className="text-red text-xs">Can't be empty</p>
+                      <p className="text-red text-xs absolute right-16 md:right-20">
+                        Can't be empty
+                      </p>
                     )}
                   </label>
-                  <label className="text-xs grid gap-1" htmlFor="first-name">
+                  <label
+                    className="text-xs text-dark-gray grid gap-1 md:text-gray md:text-base md:flex md:justify-between md:items-center"
+                    htmlFor="first-name"
+                  >
                     Email
                     <input
-                      className="border-light-gray caret-dark-purple border text-base pl-4 rounded-lg p-2.5 focus:border-dark-purple focus:outline-none focus:ring-0"
+                      className="border-light-gray caret-dark-purple border text-base pl-4 rounded-lg p-2.5 focus:border-dark-purple focus:outline-none focus:ring-0 md:w-80"
                       id="email"
                       type="email"
                       style={emailBoxShadow}
@@ -215,10 +232,11 @@ export default function Details() {
           </div>
         </div>
       </div>
-      <div className="bg-white p-4 flex justify-center items-center rounded-bl-xl rounded-br-xl">
+      <div className="h-px bg-light-gray"></div>
+      <div className="bg-white p-4 md:px-10 md:py-6 flex justify-center items-center rounded-bl-xl md:justify-end rounded-br-xl">
         <button
           onClick={handleSave}
-          className="text-white w-full hover:bg-[#BEADFF] bg-dark-purple px-36 py-2.5 rounded-lg"
+          className="text-white hover:bg-[#BEADFF] bg-dark-purple w-full p-2.5 md:w-auto md:px-7 md:py-3 rounded-lg"
           style={{
             boxShadow: "none",
           }}

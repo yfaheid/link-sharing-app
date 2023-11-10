@@ -249,7 +249,7 @@ export default function Links({
                 {savePressed &&
                 (link.text.trim() === "" ||
                   !validateURL(link.text, link.platform)) ? (
-                  <p className="text-red text-xs absolute bottom-14 right-2">
+                  <p className="text-red text-xs absolute bottom-14 right-2 md:bottom-4 md:right-4">
                     {link.text.trim() === ""
                       ? "Can't be empty"
                       : "Please check the URL"}

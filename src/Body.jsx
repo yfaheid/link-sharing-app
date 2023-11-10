@@ -50,7 +50,7 @@ export default function Body() {
 
   return (
     <div className="p-4 md:p-0">
-      <div className="bg-white py-7 px-5 md:px-10 md:py-10 rounded-tr-xl rounded-tl-xl border-b border-light-gray">
+      <div className="bg-white overflow-y-scroll p-6 min-h-77v max-h-77v md:px-10 md:pt-12 md:pb-10 md:min-h-75v md:max-h-75v rounded-tr-xl rounded-tl-xl">
         <div className="grid gap-2">
           <h1 className="text-2xl font-bold text-dark-gray md:text-3xl">
             Customize your links
@@ -72,7 +72,7 @@ export default function Body() {
                   <StrictModeDroppable droppableId={`links-${links.length}`}>
                     {(provided) => (
                       <div
-                        className="grid gap-7"
+                        className="grid gap-6"
                         {...provided.droppableProps}
                         ref={provided.innerRef}
                       >
@@ -92,7 +92,7 @@ export default function Body() {
                   </StrictModeDroppable>
                 </DragDropContext>
                 {!links.length > 0 && (
-                  <div className="bg-lighter-gray px-7 py-11 md:px-20 md:py-20 text-center rounded-xl">
+                  <div className="bg-lighter-gray text-center rounded-xl px-5 py-12 md:px-16 md:py-20">
                     <div className="grid gap-7 md:gap-12">
                       <img
                         className="m-auto md:hidden"
@@ -123,6 +123,7 @@ export default function Body() {
           </div>
         </div>
       </div>
+      <div className="h-px bg-light-gray"></div>
       <div className="bg-white p-4 md:px-10 md:py-6 flex justify-center items-center rounded-bl-xl md:justify-end rounded-br-xl">
         <button
           onClick={handleSave}
@@ -140,7 +141,7 @@ export default function Body() {
           onMouseOut={(e) => {
             e.currentTarget.style.boxShadow = "none";
           }}
-          className={`text-white w-full p-3 md:w-auto md:px-7 md:py-3 rounded-lg ${
+          className={`text-white w-full p-2.5 md:w-auto md:px-7 md:py-3 rounded-lg ${
             !isSaveDisabled ? "hover:bg-[#BEADFF]" : ""
           } bg-dark-purple`}
         >

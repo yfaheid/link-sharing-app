@@ -53,7 +53,7 @@ export default function Header() {
             </div>
           </button>
           <button
-            className={`focus:text-dark-purple hover:text-dark-purple text-gray bg-${
+            className={`hover:text-dark-purple text-gray bg-${
               showDetails ? "dark" : "opacity"
             }-purple bg-opacity-10 px-7 rounded-lg`}
             onMouseEnter={() => setIsUserIconHovered(true)}
@@ -67,7 +67,13 @@ export default function Header() {
                 }
                 alt="user icon"
               />
-              <p className="font-bold hidden md:inline">Profile Details</p>
+              <p
+                className={`font-bold ${
+                  showDetails ? "text-dark-purple" : ""
+                } hidden md:inline`}
+              >
+                Profile Details
+              </p>
             </div>
           </button>
         </div>
