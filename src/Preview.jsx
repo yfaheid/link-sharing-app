@@ -120,7 +120,7 @@ export default function Preview() {
               style={{
                 boxShadow: "0px 0px 32px 0px rgba(0, 0, 0, 0.10)",
               }}
-              className="grid gap-7 justify-center bg-white w-85 py-11 rounded-3xl relative -top-32"
+              className="grid gap-7 justify-center bg-white w-85 py-12 px-14 rounded-3xl relative -top-32"
             >
               {userDetails.uploadedImage ? (
                 <img
