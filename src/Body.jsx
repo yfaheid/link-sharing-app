@@ -85,7 +85,7 @@ export default function Body() {
                 <div className="grid gap-6">
                   <button
                     onClick={addNewLink}
-                    className="font-bold hover:bg-light-purple border-dark-purple p-3 border rounded-lg text-dark-purple"
+                    className="font-semibold hover:bg-light-purple border-dark-purple p-3 border rounded-lg text-dark-purple"
                   >
                     + Add new link
                   </button>
