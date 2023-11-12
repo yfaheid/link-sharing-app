@@ -5,6 +5,7 @@ import { useDetailsContext } from "./DetailsContext";
 import saveIcon from "./assets/save.svg";
 import phoneOutside from "./assets/phoneoutside.svg";
 import phoneInside from "./assets/phoneinside.svg";
+import Phone from "./Phone";
 
 export default function Details() {
   const { userDetails, updateDetails, uploadedImage, updateUploadedImage } =
@@ -107,14 +108,21 @@ export default function Details() {
   return (
     <div className="p-4 md:p-0">
       <div className="lg:flex lg:gap-5 lg:justify-center">
-        <div className="hidden lg:grid bg-white rounded-xl justify-center items-center min-w-[43%]">
-          <div className="relative">
-            <img src={phoneOutside} alt="phone outside" />
+        <div className="hidden lg:grid bg-white rounded-xl justify-center items-center min-w-[43%] relative">
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 min-w-full">
+            <img
+              src={phoneOutside}
+              alt="phone outside"
+              className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+            />
             <img
               src={phoneInside}
               className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
               alt="phone inside"
             />
+          </div>
+          <div className="relative right-[1px]">
+            <Phone />
           </div>
         </div>
         <div className="lg:min-w-[55.5%] lg:max-w-[55.5%]">
@@ -166,7 +174,7 @@ export default function Details() {
                           onChange={handleImageChange}
                         />
                       </div>
-                      <p className="text-gray text-xs md:w-32">
+                      <p className="text-gray text-xs md:w-32 lg:w-52">
                         Image must be below 1024x1024px. Use PNG or JPG format.
                       </p>
                     </div>
@@ -179,7 +187,7 @@ export default function Details() {
                       >
                         First name*
                         <input
-                          className={`border-light-gray caret-dark-purple border text-base pl-4 rounded-lg p-2.5 focus:border-dark-purple focus:outline-none focus:ring-0 shadow-dark-purple focus:shadow-md md:w-80 ${
+                          className={`border-light-gray caret-dark-purple border text-base pl-4 rounded-lg p-2.5 focus:border-dark-purple focus:outline-none focus:ring-0 shadow-dark-purple focus:shadow-md md:w-[340px] lg:w-[420px] ${
                             firstNameError ? "border-red" : ""
                           }`}
                           id="first-name"
@@ -205,7 +213,7 @@ export default function Details() {
                       >
                         Last name*
                         <input
-                          className={`border-light-gray caret-dark-purple border text-base pl-4 rounded-lg p-2.5 focus:border-dark-purple focus:outline-none focus:ring-0 md:w-80 ${
+                          className={`border-light-gray caret-dark-purple border text-base pl-4 rounded-lg p-2.5 focus:border-dark-purple focus:outline-none focus:ring-0 md:w-[340px] lg:w-[420px] ${
                             lastNameError ? "border-red" : ""
                           }`}
                           id="last-name"
@@ -230,7 +238,7 @@ export default function Details() {
                       >
                         Email
                         <input
-                          className="border-light-gray caret-dark-purple border text-base pl-4 rounded-lg p-2.5 focus:border-dark-purple focus:outline-none focus:ring-0 md:w-80"
+                          className="border-light-gray caret-dark-purple border text-base pl-4 rounded-lg p-2.5 focus:border-dark-purple focus:outline-none focus:ring-0 md:w-[340px] lg:w-[420px]"
                           id="email"
                           type="email"
                           style={emailBoxShadow}

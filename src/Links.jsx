@@ -130,20 +130,35 @@ export default function Links({
     };
   }, []);
 
-  const [isLinkFocused, setIsLinkFocused] = useState(false);
+  const [isButtonFocused, setIsButtonFocused] = useState(false);
+  const [isInputFocused, setIsInputFocused] = useState(false);
 
-  const linkBoxShadow = {
-    boxShadow: isLinkFocused
+  const handleButtonFocus = () => {
+    setIsButtonFocused(true);
+  };
+
+  const handleButtonBlur = () => {
+    setIsButtonFocused(false);
+  };
+
+  const handleInputFocus = () => {
+    setIsInputFocused(true);
+  };
+
+  const handleInputBlur = () => {
+    setIsInputFocused(false);
+  };
+
+  const buttonBoxShadow = {
+    boxShadow: isButtonFocused
       ? "0px 0px 32px 0px rgba(99, 60, 255, 0.25)"
       : "none",
   };
 
-  const handleLinkFocus = () => {
-    setIsLinkFocused(true);
-  };
-
-  const handleLinkBlur = () => {
-    setIsLinkFocused(false);
+  const inputBoxShadow = {
+    boxShadow: isInputFocused
+      ? "0px 0px 32px 0px rgba(99, 60, 255, 0.25)"
+      : "none",
   };
 
   return (
@@ -190,7 +205,10 @@ export default function Links({
                 </div>
                 <button
                   id={`platform-button-${id}`}
-                  className="rounded-lg text-left pl-11 p-3 border-light-gray border bg-white text-dark-gray w-full"
+                  style={buttonBoxShadow}
+                  onFocus={handleButtonFocus}
+                  onBlur={handleButtonBlur}
+                  className="rounded-lg text-left pl-11 p-3 border-light-gray border bg-white text-dark-gray w-full focus:border-dark-purple focus:outline-none focus:ring-0"
                   onClick={toggleDropdown}
                   ref={buttonRef}
                 >
@@ -235,9 +253,9 @@ export default function Links({
                   }`}
                   id={`link-${id}`}
                   type="text"
-                  style={linkBoxShadow}
-                  onFocus={handleLinkFocus}
-                  onBlur={handleLinkBlur}
+                  style={inputBoxShadow}
+                  onFocus={handleInputFocus}
+                  onBlur={handleInputBlur}
                   value={link.text}
                   placeholder={
                     platforms.find(

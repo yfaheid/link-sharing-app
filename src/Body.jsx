@@ -9,6 +9,7 @@ import StrictModeDroppable from "./StrictModeDroppable";
 import largePhoneIcon from "./assets/largephone.svg";
 import phoneOutside from "./assets/phoneoutside.svg";
 import phoneInside from "./assets/phoneinside.svg";
+import Phone from "./Phone";
 
 export default function Body() {
   const { links, addLink, removeLink, updateLinksOrder } = useLinkContext();
@@ -53,14 +54,21 @@ export default function Body() {
   return (
     <div className="p-4 md:p-0">
       <div className="lg:flex lg:gap-5 lg:justify-center">
-        <div className="hidden lg:grid bg-white rounded-xl justify-center items-center min-w-[43%]">
-          <div className="relative">
-            <img src={phoneOutside} alt="phone outside" />
+        <div className="hidden lg:grid bg-white rounded-xl justify-center items-center min-w-[43%] relative">
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 min-w-full">
+            <img
+              src={phoneOutside}
+              alt="phone outside"
+              className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+            />
             <img
               src={phoneInside}
               className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
               alt="phone inside"
             />
+          </div>
+          <div className="relative right-[1px]">
+            <Phone />
           </div>
         </div>
         <div className="lg:min-w-[55.5%] lg:max-w-[55.5%]">
