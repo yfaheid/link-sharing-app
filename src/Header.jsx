@@ -22,7 +22,7 @@ export default function Header() {
 
   return (
     <div className="md:grid md:gap-5 md:p-5 bg-lighter-gray h-screen">
-      <div className="flex justify-between p-4 pl-6 bg-white rounded-br-xl rounded-bl-xl md:rounded-xl">
+      <div className="flex justify-between items-center p-4 pl-6 bg-white rounded-br-xl rounded-bl-xl md:rounded-xl">
         <div className="flex items-center gap-1">
           <img src={devlinksLogo} alt="devlinks logo" />
           <p className="hidden md:inline text-3xl font-bold text-dark-gray">
@@ -33,7 +33,7 @@ export default function Header() {
           <button
             className={`hover:text-dark-purple text-gray bg-${
               showBody ? "dark" : "opacity"
-            }-purple bg-opacity-10 px-7 rounded-lg`}
+            }-purple bg-opacity-10 px-7 py-3 rounded-lg`}
             onMouseEnter={() => setIsLinkIconHovered(true)}
             onMouseLeave={() => setIsLinkIconHovered(false)}
             onClick={() => toggleIcon(false)}
@@ -55,12 +55,12 @@ export default function Header() {
           <button
             className={`hover:text-dark-purple text-gray bg-${
               showDetails ? "dark" : "opacity"
-            }-purple bg-opacity-10 px-7 rounded-lg`}
+            }-purple bg-opacity-10 px-7 py-3 rounded-lg`}
             onMouseEnter={() => setIsUserIconHovered(true)}
             onMouseLeave={() => setIsUserIconHovered(false)}
             onClick={() => toggleIcon(true)}
           >
-            <div className="flex gap-2 ">
+            <div className="flex gap-2">
               <img
                 src={
                   isUserIconHovered || showDetails ? purpleUserIcon : userIcon
