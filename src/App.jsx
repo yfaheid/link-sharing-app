@@ -13,7 +13,7 @@ export default function App() {
             <Route
               path="/"
               element={
-                <div className="font-instrument">
+                <div className="font-instrument h-screen bg-lighter-gray">
                   <Header />
                 </div>
               }

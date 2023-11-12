@@ -52,7 +52,7 @@ export default function Body() {
   };
 
   return (
-    <div className="p-4 md:p-0 bg-lighter-gray h-screen">
+    <div className="p-4 md:p-0">
       <div className="lg:flex lg:justify-center lg:gap-5">
         <div className="hidden lg:grid bg-white rounded-xl justify-center items-center min-w-[43%] overflow-y-scroll relative">
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 min-w-full">
