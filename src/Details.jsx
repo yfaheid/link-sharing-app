@@ -121,7 +121,7 @@ export default function Details() {
               alt="phone inside"
             />
           </div>
-          <div className="relative right-[1px]">
+          <div className="relative right-[2px]">
             <Phone />
           </div>
         </div>
@@ -206,7 +206,6 @@ export default function Details() {
                           </p>
                         )}
                       </label>
-
                       <label
                         className="text-xs text-dark-gray grid gap-1 md:text-gray md:text-base md:flex md:justify-between md:items-center relative"
                         htmlFor="last-name"

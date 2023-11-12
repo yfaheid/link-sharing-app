@@ -3,7 +3,6 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 import { Link } from "react-router-dom";
 import { useDetailsContext } from "./DetailsContext";
 import { useLinkContext } from "./LinksContext";
-import purpleUserIcon from "./assets/purpleuser.svg";
 import PreviewLinks from "./PreviewLinks";
 import linkIcon from "./assets/link.svg";
 
@@ -58,11 +57,7 @@ export default function Preview() {
                 alt="profile picture"
               />
             ) : (
-              <img
-                className="m-auto h-36"
-                src={purpleUserIcon}
-                alt="profile picture placeholder"
-              />
+              <div className="rounded-full h-28 w-28 bg-[#EEEEEE] m-auto"></div>
             )}
             <div className="grid gap-14">
               <div className="grid gap-3">
@@ -129,11 +124,7 @@ export default function Preview() {
                   alt="profile picture"
                 />
               ) : (
-                <img
-                  className="m-auto h-36"
-                  src={purpleUserIcon}
-                  alt="profile picture placeholder"
-                />
+                <div className="rounded-full h-28 w-28 bg-[#EEEEEE] m-auto"></div>
               )}
               <div className="grid gap-14">
                 <div className="grid gap-3">

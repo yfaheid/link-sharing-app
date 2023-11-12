@@ -67,7 +67,7 @@ export default function Body() {
               alt="phone inside"
             />
           </div>
-          <div className="relative right-[1px]">
+          <div className="relative right-[2px]">
             <Phone />
           </div>
         </div>
