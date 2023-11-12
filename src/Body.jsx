@@ -72,7 +72,7 @@ export default function Body() {
           </div>
         </div>
         <div className="lg:min-w-[55.5%] lg:max-w-[55.5%]">
-          <div className="bg-white overflow-y-scroll p-6 md:px-10 md:pt-12 md:pb-10 rounded-tr-xl rounded-tl-xl min-h-[627px] max-h-[627px] md:min-h-[780px] md:max-h-[780px] lg:min-h-[720px] lg:max-h-[720px]">
+          <div className="bg-white overflow-y-scroll p-6 md:px-10 md:pt-12 md:pb-10 rounded-tr-xl rounded-tl-xl">
             <div className="grid gap-2">
               <h1 className="text-2xl font-bold text-dark-gray md:text-3xl">
                 Customize your links
