@@ -106,9 +106,9 @@ export default function Details() {
   };
 
   return (
-    <div className="p-4 md:p-0 max-h-screen">
+    <div className="p-4 md:p-0">
       <div className="lg:flex lg:gap-5 lg:justify-center">
-        <div className="hidden lg:grid bg-white rounded-xl justify-center items-center min-w-[43%]  max-h-screen overflow-y-scroll relative">
+        <div className="hidden lg:grid bg-white rounded-xl justify-center items-center min-w-[43%] overflow-y-scroll relative">
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 min-w-full">
             <img
               src={phoneOutside}
@@ -126,7 +126,7 @@ export default function Details() {
           </div>
         </div>
         <div className="lg:min-w-[55.5%] lg:max-w-[55.5%]">
-          <div className="bg-white max-h-77v overflow-y-scroll md:min-h-75v md:max-h-75v md:px-10 md:py-12 p-6 rounded-tr-xl rounded-tl-xl">
+          <div className="bg-white overflow-y-scroll md:px-10 md:py-12 p-6 rounded-tr-xl rounded-tl-xl min-h-[627px] md:min-h-[780px] lg:min-h-[720px]">
             <div className="grid gap-2">
               <h1 className="text-2xl font-bold text-dark-gray md:text-3xl">
                 Profile Details
