@@ -19,7 +19,7 @@ export default function Preview() {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="max-h-screen">
       <div className="md:hidden">
         <div className="grid gap-12 font-instrument">
           <div className="flex justify-center gap-4 p-5">
