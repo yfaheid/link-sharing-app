@@ -35,7 +35,7 @@ Users should be able to:
 ### Links
 
 - Solution URL: [Add solution URL here](https://www.frontendmentor.io/solutions/link-sharing-app-using-react-and-tailwind-css-7mq5u9jzRF)
-- Live Site URL: [Add live site URL here](https://link-sharing-app-yfaheid.netlify.app/)
+- Live Site URL: [Add live site URL here](https://devlinks-yfaheid.netlify.app/)
 
 ### Built with
 
