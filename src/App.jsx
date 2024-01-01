@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Preview from "./Preview";
 import { LinkProvider } from "./LinksContext";
 import { DetailsProvider } from "./DetailsContext";
+import Login from "./Login";
+import CreateAccount from "./CreateAccount";
 
 export default function App() {
   return (
@@ -14,11 +16,13 @@ export default function App() {
               path="/"
               element={
                 <div className="font-instrument min-h-screen bg-lighter-gray">
-                  <Header />
+                  <Login />
                 </div>
               }
             />
-            <Route path="/preview" element={<Preview />} />
+            <Route path="/Preview" element={<Preview />} />
+            <Route path="/CreateAccount" element={<CreateAccount />} />
+            <Route path="/Login" element={<Login />} />
           </Routes>
         </DetailsProvider>
       </LinkProvider>
