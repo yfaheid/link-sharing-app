@@ -258,7 +258,7 @@ export default function Details() {
           <div className="bg-white p-4 md:px-10 md:py-6 flex justify-center items-center rounded-bl-xl md:justify-end rounded-br-xl">
             <button
               onClick={handleSave}
-              className="text-white hover:bg-[#BEADFF] bg-dark-purple w-full p-2.5 md:w-auto md:px-7 md:py-3 rounded-lg"
+              className="text-white hover:bg-[#BEADFF] bg-dark-purple w-full p-2.5 md:w-auto md:px-7 md:py-3 rounded-lg font-medium"
               style={{
                 boxShadow: "none",
               }}

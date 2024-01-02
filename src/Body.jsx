@@ -165,7 +165,7 @@ export default function Body() {
               onMouseOut={(e) => {
                 e.currentTarget.style.boxShadow = "none";
               }}
-              className={`text-white w-full p-2.5 md:w-auto md:px-7 md:py-3 rounded-lg ${
+              className={`text-white w-full p-2.5 md:w-auto md:px-7 md:py-3 rounded-lg font-medium ${
                 !isSaveDisabled ? "hover:bg-[#BEADFF]" : ""
               } bg-dark-purple`}
             >

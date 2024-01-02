@@ -16,7 +16,7 @@ export default function App() {
               path="/"
               element={
                 <div className="font-instrument min-h-screen bg-lighter-gray">
-                  <Login />
+                  <Header />
                 </div>
               }
             />
