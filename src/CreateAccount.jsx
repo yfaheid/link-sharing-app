@@ -3,8 +3,50 @@ import devlinksLogo from "./assets/devlinks.svg";
 import envelopeIcon from "./assets/envelope.svg";
 import lockIcon from "./assets/lock.svg";
 import { useState } from "react";
+import { auth } from "./firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 export default function CreateAccount() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handleConfirmPasswordChange = (e) => {
+    setConfirmPassword(e.target.value);
+  };
+
+  const handleCreateAccount = async (e) => {
+    e.preventDefault(); // Prevents the default form submission behavior
+
+    try {
+      // Check if passwords match
+      if (password !== confirmPassword) {
+        setPasswordError("Please check again");
+        return;
+      }
+
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredential.user;
+      console.log("User created:", user);
+      // Redirect or perform additional actions after successful registration
+    } catch (error) {
+      console.error("Error creating account:", error.message);
+    }
+  };
+
   const [isEmailFocused, setIsEmailFocused] = useState(false);
   const [isPasswordFocused, setIsPasswordFocused] = useState(false);
   const [isConfirmFocused, setIsConfirmFocused] = useState(false);
@@ -67,7 +109,7 @@ export default function CreateAccount() {
               Let's get you started sharing your links!
             </p>
           </div>
-          <div className="grid gap-6">
+          <form className="grid gap-6">
             <div className="grid gap-1">
               <label className="text-sm text-dark-gray" htmlFor="email">
                 Email address
@@ -85,6 +127,9 @@ export default function CreateAccount() {
                 style={emailInputBoxShadow}
                 onFocus={handleEmailFocus}
                 onBlur={handleEmailBlur}
+                value={email}
+                onChange={handleEmailChange}
+                required
               />
             </div>
             <div className="grid gap-1">
@@ -104,6 +149,9 @@ export default function CreateAccount() {
                 style={passwordInputBoxShadow}
                 onFocus={handlePasswordFocus}
                 onBlur={handlePasswordBlur}
+                value={password}
+                onChange={handlePasswordChange}
+                required
               />
             </div>
             <div className="grid gap-1">
@@ -126,7 +174,11 @@ export default function CreateAccount() {
                 style={confirmInputBoxShadow}
                 onFocus={handleConfirmFocus}
                 onBlur={handleConfirmBlur}
+                value={confirmPassword}
+                onChange={handleConfirmPasswordChange}
+                required
               />
+              {passwordError && <p className="text-red-500">{passwordError}</p>}
             </div>
             <div className="grid gap-5">
               <p className="text-gray text-xs">
@@ -144,6 +196,8 @@ export default function CreateAccount() {
                 onMouseOut={(e) => {
                   e.currentTarget.style.boxShadow = "none";
                 }}
+                onClick={(e) => handleCreateAccount(e)}
+                type="submit"
               >
                 Create new account
               </button>
@@ -156,7 +210,7 @@ export default function CreateAccount() {
                 </Link>
               </div>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>
