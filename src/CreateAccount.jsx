@@ -11,29 +11,45 @@ export default function CreateAccount() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [emailError, setEmailError] = useState("");
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
+    setEmailError("");
   };
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
+    setPasswordError("");
   };
 
   const handleConfirmPasswordChange = (e) => {
     setConfirmPassword(e.target.value);
+    setPasswordError("");
   };
 
   const handleCreateAccount = async (e) => {
     e.preventDefault(); // Prevents the default form submission behavior
 
-    try {
-      // Check if passwords match
-      if (password !== confirmPassword) {
-        setPasswordError("Please check again");
-        return;
-      }
+    // Validate email
+    if (!email.trim()) {
+      setEmailError("Can't be empty");
+      return;
+    }
 
+    // Validate password
+    if (password.length < 8) {
+      setPasswordError("Must be at least 8 characters");
+      return;
+    }
+
+    // Check if passwords match
+    if (password !== confirmPassword) {
+      setPasswordError("Please check again");
+      return;
+    }
+
+    try {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         email,
@@ -78,19 +94,30 @@ export default function CreateAccount() {
   const emailInputBoxShadow = {
     boxShadow: isEmailFocused
       ? "0px 0px 32px 0px rgba(99, 60, 255, 0.25)"
+      : emailError
+      ? "0px 0px 0px 2px rgba(255, 0, 0, 0.5)"
       : "none",
   };
 
   const passwordInputBoxShadow = {
     boxShadow: isPasswordFocused
       ? "0px 0px 32px 0px rgba(99, 60, 255, 0.25)"
+      : passwordError
+      ? "0px 0px 0px 2px rgba(255, 0, 0, 0.5)"
       : "none",
   };
 
   const confirmInputBoxShadow = {
     boxShadow: isConfirmFocused
       ? "0px 0px 32px 0px rgba(99, 60, 255, 0.25)"
+      : passwordError
+      ? "0px 0px 0px 2px rgba(255, 0, 0, 0.5)"
       : "none",
+  };
+
+  const errorTextStyle = {
+    color: "red",
+    fontSize: "0.75rem", // Adjust the font size as needed
   };
 
   return (
@@ -131,6 +158,7 @@ export default function CreateAccount() {
                 onChange={handleEmailChange}
                 required
               />
+              {emailError && <p style={errorTextStyle}>{emailError}</p>}
             </div>
             <div className="grid gap-1">
               <label className="text-sm text-dark-gray" htmlFor="password">
@@ -153,6 +181,7 @@ export default function CreateAccount() {
                 onChange={handlePasswordChange}
                 required
               />
+              {passwordError && <p style={errorTextStyle}>{passwordError}</p>}
             </div>
             <div className="grid gap-1">
               <label
@@ -178,7 +207,7 @@ export default function CreateAccount() {
                 onChange={handleConfirmPasswordChange}
                 required
               />
-              {passwordError && <p className="text-red-500">{passwordError}</p>}
+              {passwordError && <p style={errorTextStyle}>{passwordError}</p>}
             </div>
             <div className="grid gap-5">
               <p className="text-gray text-xs">
