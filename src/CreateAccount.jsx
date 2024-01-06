@@ -1,10 +1,10 @@
-import { Link } from "react-router-dom";
 import devlinksLogo from "./assets/devlinks.svg";
 import envelopeIcon from "./assets/envelope.svg";
 import lockIcon from "./assets/lock.svg";
 import { useState } from "react";
 import { auth } from "./firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function CreateAccount() {
   const [email, setEmail] = useState("");
@@ -27,6 +27,8 @@ export default function CreateAccount() {
     setConfirmPassword(e.target.value);
     setPasswordError("");
   };
+
+  const navigate = useNavigate();
 
   const handleCreateAccount = async (e) => {
     e.preventDefault(); // Prevents the default form submission behavior
@@ -57,7 +59,9 @@ export default function CreateAccount() {
       );
       const user = userCredential.user;
       console.log("User created:", user);
-      // Redirect or perform additional actions after successful registration
+
+      // Redirect to the desired route after successful registration
+      navigate("/");
     } catch (error) {
       console.error("Error creating account:", error.message);
     }
@@ -94,25 +98,31 @@ export default function CreateAccount() {
   const emailInputBoxShadow = {
     boxShadow: isEmailFocused
       ? "0px 0px 32px 0px rgba(99, 60, 255, 0.25)"
-      : emailError
-      ? "0px 0px 0px 2px rgba(255, 0, 0, 0.5)"
       : "none",
   };
 
   const passwordInputBoxShadow = {
     boxShadow: isPasswordFocused
       ? "0px 0px 32px 0px rgba(99, 60, 255, 0.25)"
-      : passwordError
-      ? "0px 0px 0px 2px rgba(255, 0, 0, 0.5)"
       : "none",
   };
 
   const confirmInputBoxShadow = {
     boxShadow: isConfirmFocused
       ? "0px 0px 32px 0px rgba(99, 60, 255, 0.25)"
-      : passwordError
-      ? "0px 0px 0px 2px rgba(255, 0, 0, 0.5)"
       : "none",
+  };
+
+  const emailInputBorderStyle = {
+    border: `1px solid ${emailError ? "red" : "light-gray"}`,
+  };
+
+  const passwordInputBorderStyle = {
+    border: `1px solid ${passwordError ? "red" : "light-gray"}`,
+  };
+
+  const confirmInputBorderStyle = {
+    border: `1px solid ${passwordError ? "red" : "light-gray"}`,
   };
 
   const errorTextStyle = {
@@ -151,7 +161,7 @@ export default function CreateAccount() {
                 placeholder="e.g. alex@gmail.com"
                 type="text"
                 id="email"
-                style={emailInputBoxShadow}
+                style={{ ...emailInputBoxShadow, ...emailInputBorderStyle }}
                 onFocus={handleEmailFocus}
                 onBlur={handleEmailBlur}
                 value={email}
@@ -174,7 +184,10 @@ export default function CreateAccount() {
                 placeholder="At least 8 characters"
                 type="password"
                 id="password"
-                style={passwordInputBoxShadow}
+                style={{
+                  ...passwordInputBoxShadow,
+                  ...passwordInputBorderStyle,
+                }}
                 onFocus={handlePasswordFocus}
                 onBlur={handlePasswordBlur}
                 value={password}
@@ -200,7 +213,7 @@ export default function CreateAccount() {
                 placeholder="At least 8 characters"
                 type="password"
                 id="confirm-password"
-                style={confirmInputBoxShadow}
+                style={{ ...confirmInputBoxShadow, ...confirmInputBorderStyle }}
                 onFocus={handleConfirmFocus}
                 onBlur={handleConfirmBlur}
                 value={confirmPassword}

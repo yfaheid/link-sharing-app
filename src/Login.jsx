@@ -1,12 +1,20 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import devlinksLogo from "./assets/devlinks.svg";
 import envelopeIcon from "./assets/envelope.svg";
 import lockIcon from "./assets/lock.svg";
 import { useState } from "react";
+import { auth } from "./firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 export default function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
   const [isEmailFocused, setIsEmailFocused] = useState(false);
   const [isPasswordFocused, setIsPasswordFocused] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleEmailFocus = () => {
     setIsEmailFocused(true);
@@ -36,6 +44,46 @@ export default function Login() {
       : "none",
   };
 
+  const emailInputBorderStyle = {
+    border: `1px solid ${emailError ? "red" : "light-gray"}`,
+  };
+
+  const passwordInputBorderStyle = {
+    border: `1px solid ${passwordError ? "red" : "light-gray"}`,
+  };
+
+  const errorTextStyle = {
+    color: "red",
+    fontSize: "0.75rem", // Adjust the font size as needed
+  };
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    // Validate email
+    if (!email.trim()) {
+      setEmailError("Can't be empty");
+      return;
+    }
+
+    // Validate password
+    if (!password.trim()) {
+      setPasswordError("Can't be empty");
+      return;
+    }
+
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+
+      // Redirect or perform additional actions after successful login
+      navigate("/");
+    } catch (error) {
+      setEmailError("Please check again");
+      setPasswordError("Please check again");
+      console.error("Error logging in:", error.message);
+    }
+  };
+
   return (
     <div className="bg-white h-screen">
       <div className="grid p-8 gap-16">
@@ -50,7 +98,7 @@ export default function Login() {
               Add your details below to get back into the app
             </p>
           </div>
-          <div className="grid gap-6">
+          <form className="grid gap-6">
             <div className="grid gap-1">
               <label className="text-sm text-dark-gray" htmlFor="email">
                 Email address
@@ -65,10 +113,14 @@ export default function Login() {
                 placeholder="e.g. alex@gmail.com"
                 type="text"
                 id="email"
-                style={emailInputBoxShadow}
+                style={{ ...emailInputBoxShadow, ...emailInputBorderStyle }}
                 onFocus={handleEmailFocus}
                 onBlur={handleEmailBlur}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
               />
+              {emailError && <p style={errorTextStyle}>{emailError}</p>}
             </div>
             <div className="grid gap-1">
               <label className="text-sm text-dark-gray" htmlFor="password">
@@ -84,10 +136,17 @@ export default function Login() {
                 placeholder="Enter your password"
                 type="password"
                 id="password"
-                style={passwordInputBoxShadow}
+                style={{
+                  ...passwordInputBoxShadow,
+                  ...passwordInputBorderStyle,
+                }}
                 onFocus={handlePasswordFocus}
                 onBlur={handlePasswordBlur}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
               />
+              {passwordError && <p style={errorTextStyle}>{passwordError}</p>}
             </div>
             <div className="grid gap-5">
               <button
@@ -102,6 +161,8 @@ export default function Login() {
                 onMouseOut={(e) => {
                   e.currentTarget.style.boxShadow = "none";
                 }}
+                onClick={handleLogin}
+                type="submit"
               >
                 Login
               </button>
@@ -112,7 +173,7 @@ export default function Login() {
                 </Link>
               </div>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>
