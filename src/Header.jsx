@@ -77,7 +77,7 @@ export default function Header() {
             </div>
           </button>
         </div>
-        <Link to="/Preview">
+        <Link to="/preview">
           <button className="border hover:bg-light-purple border-dark-purple py-2.5 px-4 md:px-6 rounded-lg">
             <img className="md:hidden" src={eyeIcon} alt="eye icon" />
             <p className="hidden md:inline text-dark-purple font-bold">

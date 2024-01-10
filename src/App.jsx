@@ -5,6 +5,7 @@ import { LinkProvider } from "./LinksContext";
 import { DetailsProvider } from "./DetailsContext";
 import Login from "./Login";
 import CreateAccount from "./CreateAccount";
+import PrivateRoute from "./PrivateRoute";
 
 export default function App() {
   return (
@@ -12,17 +13,26 @@ export default function App() {
       <LinkProvider>
         <DetailsProvider>
           <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/createaccount" element={<CreateAccount />} />
             <Route
               path="/"
               element={
                 <div className="font-instrument min-h-screen bg-lighter-gray">
-                  <Header />
+                  <PrivateRoute>
+                    <Header />
+                  </PrivateRoute>
                 </div>
               }
             />
-            <Route path="/Preview" element={<Preview />} />
-            <Route path="/CreateAccount" element={<CreateAccount />} />
-            <Route path="/Login" element={<Login />} />
+            <Route
+              path="/preview"
+              element={
+                <PrivateRoute>
+                  <Preview />
+                </PrivateRoute>
+              }
+            />
           </Routes>
         </DetailsProvider>
       </LinkProvider>

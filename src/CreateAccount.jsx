@@ -247,7 +247,7 @@ export default function CreateAccount() {
                 <p className="text-gray text-center">
                   Already have an account?
                 </p>
-                <Link to="/Login" className="text-center">
+                <Link to="/login" className="text-center">
                   <button className="text-dark-purple">Login</button>
                 </Link>
               </div>

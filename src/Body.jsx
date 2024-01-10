@@ -80,7 +80,7 @@ export default function Body() {
               <div className="grid gap-9">
                 <p className="text-gray">
                   Add/edit/remove links below and then share all your profiles
-                  with the world!
+                  with the world! (Links should start with "https://www.")
                 </p>
                 <div className="grid gap-6">
                   <button
