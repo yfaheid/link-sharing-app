@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 const LinkContext = createContext();
 
@@ -12,7 +13,7 @@ export function LinkProvider({ children }) {
 
   const addLink = () => {
     const newLink = {
-      id: linkCounter + 1,
+      id: uuidv4(),
       platform: "GitHub",
       text: "",
     };

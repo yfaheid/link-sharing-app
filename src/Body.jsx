@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import phoneIcon from "./assets/phone.svg";
 import Links from "./Links";
 import saveIcon from "./assets/save.svg";
@@ -10,6 +10,8 @@ import largePhoneIcon from "./assets/largephone.svg";
 import phoneOutside from "./assets/phoneoutside.svg";
 import phoneInside from "./assets/phoneinside.svg";
 import Phone from "./Phone";
+import { db } from "./firebase";
+import { collection, addDoc, getDocs } from "firebase/firestore";
 
 export default function Body() {
   const { links, addLink, removeLink, updateLinksOrder } = useLinkContext();
@@ -19,20 +21,42 @@ export default function Body() {
   const [savePressed, setSavePressed] = useState(false);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
-  const handleSave = () => {
-    setSavePressed(true);
+  const linksCollectionRef = collection(db, "links");
 
+  useEffect(() => {
+    const fetchLinks = async () => {
+      const querySnapshot = await getDocs(linksCollectionRef);
+      const fetchedLinks = [];
+      querySnapshot.forEach((doc) => {
+        fetchedLinks.push({ id: doc.id, ...doc.data() });
+      });
+      // Assuming updateLinksOrder is a method to update your state
+      updateLinksOrder(fetchedLinks);
+    };
+
+    fetchLinks();
+  }, []);
+
+  const handleSave = async () => {
+    setSavePressed(true);
     const hasErrors = links.some(
       (link) =>
         link.text.trim() === "" || !validateURL(link.text, link.platform)
     );
 
     if (!hasErrors) {
-      setShowSuccessMessage(true);
-      setTimeout(() => {
-        setShowSuccessMessage(false);
-        setSavePressed(false);
-      }, 3000);
+      try {
+        await Promise.all(
+          links.map((link) => addDoc(linksCollectionRef, link))
+        );
+        setShowSuccessMessage(true);
+        setTimeout(() => {
+          setShowSuccessMessage(false);
+          setSavePressed(false);
+        }, 3000);
+      } catch (error) {
+        console.error("Error saving links: ", error);
+      }
     }
   };
 
