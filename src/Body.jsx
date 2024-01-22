@@ -28,9 +28,10 @@ export default function Body() {
       const querySnapshot = await getDocs(linksCollectionRef);
       const fetchedLinks = [];
       querySnapshot.forEach((doc) => {
-        fetchedLinks.push({ id: doc.id, ...doc.data() });
+        fetchedLinks.push({ ...doc.data(), isNew: false });
       });
-      // Assuming updateLinksOrder is a method to update your state
+      // Sort links by timestamp
+      fetchedLinks.sort((a, b) => a.timestamp - b.timestamp);
       updateLinksOrder(fetchedLinks);
     };
 
@@ -46,9 +47,23 @@ export default function Body() {
 
     if (!hasErrors) {
       try {
+        const timestamp = new Date(); // Current timestamp
+        const newLinks = links.filter((link) => link.isNew);
         await Promise.all(
-          links.map((link) => addDoc(linksCollectionRef, link))
+          newLinks.map((link) =>
+            addDoc(linksCollectionRef, {
+              id: link.id,
+              platform: link.platform,
+              text: link.text,
+              timestamp, // add timestamp here
+            })
+          )
         );
+
+        // Update all links as not new
+        const updatedLinks = links.map((link) => ({ ...link, isNew: false }));
+        updateLinksOrder(updatedLinks);
+
         setShowSuccessMessage(true);
         setTimeout(() => {
           setShowSuccessMessage(false);

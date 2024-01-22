@@ -9,17 +9,16 @@ export function useLinkContext() {
 
 export function LinkProvider({ children }) {
   const [links, setLinks] = useState([]);
-  const [linkCounter, setLinkCounter] = useState(0);
 
   const addLink = () => {
     const newLink = {
-      id: uuidv4(),
+      id: uuidv4(), // Generates a unique UUID
       platform: "GitHub",
       text: "",
+      isNew: true,
     };
 
     setLinks([...links, newLink]);
-    setLinkCounter(linkCounter + 1);
   };
 
   const updateLinksOrder = (reorderedLinks) => {
