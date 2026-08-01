@@ -1,51 +1,48 @@
-# Frontend Mentor - Link-sharing app solution
+# devlinks
 
-This is a solution to the [Link-sharing app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/linksharing-app-Fbt7yweGsT). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
+A link-sharing profile app — sign in, add and reorder links to your social/dev profiles, set up your profile details, and share a public preview link with anyone.
 
-## Table of contents
+Originally built from the [Frontend Mentor Link-sharing app challenge](https://www.frontendmentor.io/challenges/linksharing-app-Fbt7yweGsT), since extended with a real backend.
 
-- [Overview](#overview)
-  - [The challenge](#the-challenge)
-  - [Screenshot](#screenshot)
-  - [Links](#links)
-  - [Built with](#built-with)
-- [Author](#author)
-
-**Note: Delete this note and update the table of contents based on what sections you keep.**
-
-## Overview
-
-### The challenge
-
-Users should be able to:
-
-- Create, read, update, delete links and see previews in the mobile mockup
-- Receive validations if the links form is submitted without a URL or with the wrong URL pattern for the platform
-- Drag and drop links to reorder them
-- Add profile details like profile picture, first name, last name, and email
-- Receive validations if the profile details form is saved with no first or last name
-- Preview their devlinks profile and copy the link to their clipboard
-- View the optimal layout for the interface depending on their device's screen size
-- See hover and focus states for all interactive elements on the page
-
-### Screenshot
+Live site: https://devlinks-yfaheid.netlify.app/
 
 ![](./src/assets/link-sharing-app-screenshot.jpg)
 
-### Links
+## Features
 
-- Solution URL: [Add solution URL here](https://www.frontendmentor.io/solutions/link-sharing-app-using-react-and-tailwind-css-7mq5u9jzRF)
-- Live Site URL: [Add live site URL here](https://devlinks-yfaheid.netlify.app/)
+- Email/password authentication
+- Add, edit, remove, and drag-and-drop reorder links to 14 supported platforms (GitHub, LinkedIn, YouTube, etc.), with per-platform URL validation
+- Profile details (name, email, profile photo) with validation
+- Live mobile-mockup preview while editing
+- A public share link (`/preview/:uid`) that renders your profile for anyone, logged in or not
+- All data is scoped per-user and enforced by Firestore/Storage security rules — no user can read or write another user's data (aside from their public profile/links, which are intentionally readable by anyone)
 
-### Built with
+## Tech stack
 
-- Semantic HTML5 markup
-- CSS custom properties
-- Flexbox
-- CSS Grid
-- Mobile-first workflow
-- React
-- Tailwind
+- React + Vite
+- Tailwind CSS
+- React Router
+- Firebase (Authentication, Firestore, Storage)
+- `@hello-pangea/dnd` for drag-and-drop reordering
+
+## Getting started
+
+```bash
+npm install
+```
+
+This app needs a Firebase project with Authentication (email/password provider), Firestore, and Storage enabled. Create one at the [Firebase console](https://console.firebase.google.com/), then drop your project's web config into `src/firebase.js`.
+
+Deploy the included security rules so data stays scoped per-user:
+
+- `firestore.rules` — Firestore → Rules
+- `storage.rules` — Storage → Rules
+
+```bash
+npm run dev      # start the dev server
+npm run build    # production build
+npm run lint     # lint the project
+```
 
 ## Author
 
