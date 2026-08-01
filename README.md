@@ -1,52 +1,41 @@
-# Frontend Mentor - Link-sharing app solution
+# Devlinks
 
-This is a solution to the [Link-sharing app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/linksharing-app-Fbt7yweGsT). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
+A link-sharing app that lets you build a personal profile of links to your social and dev profiles, then share it with a single public URL — similar to Linktree. Built with React, Tailwind CSS, and Firebase.
 
-## Table of contents
+**Live site:** https://devlinks-yfaheid.netlify.app/
 
-- [Overview](#overview)
-  - [The challenge](#the-challenge)
-  - [Screenshot](#screenshot)
-  - [Links](#links)
-  - [Built with](#built-with)
-- [Author](#author)
-
-**Note: Delete this note and update the table of contents based on what sections you keep.**
-
-## Overview
-
-### The challenge
-
-Users should be able to:
-
-- Create, read, update, delete links and see previews in the mobile mockup
-- Receive validations if the links form is submitted without a URL or with the wrong URL pattern for the platform
-- Drag and drop links to reorder them
-- Add profile details like profile picture, first name, last name, and email
-- Receive validations if the profile details form is saved with no first or last name
-- Preview their devlinks profile and copy the link to their clipboard
-- View the optimal layout for the interface depending on their device's screen size
-- See hover and focus states for all interactive elements on the page
-
-### Screenshot
+## Screenshot
 
 ![](./src/assets/link-sharing-app-screenshot.jpg)
 
-### Links
+## Features
 
-- Solution URL: [Add solution URL here](https://www.frontendmentor.io/solutions/link-sharing-app-using-react-and-tailwind-css-7mq5u9jzRF)
-- Live Site URL: [Add live site URL here](https://devlinks-yfaheid.netlify.app/)
+- Email/password authentication (create account, log in, stay logged in)
+- Add, edit, remove, and drag-and-drop reorder links across 14 supported platforms (GitHub, LinkedIn, YouTube, Twitter, and more)
+- Client-side validation for empty fields and platform-specific URL patterns
+- Upload a profile picture, name, and email as part of your public profile
+- Live mobile-mockup preview of your profile as you edit it
+- Every user's links and profile are private to their account — copy a public share link to let anyone view your profile without needing to log in
+- Fully responsive layout across mobile, tablet, and desktop
 
-### Built with
+## Built with
 
-- Semantic HTML5 markup
-- CSS custom properties
-- Flexbox
-- CSS Grid
-- Mobile-first workflow
 - React
-- Tailwind
+- React Router
+- Tailwind CSS
+- Firebase (Authentication, Firestore, Storage)
+- Vite
+- [@hello-pangea/dnd](https://github.com/hello-pangea/dnd) for drag-and-drop reordering
+
+## Getting started
+
+```bash
+npm install
+npm run dev
+```
+
+You'll need a Firebase project of your own with Authentication (email/password), Firestore, and Storage enabled, plus a matching config in `src/firebase.js`. Security rules for Firestore and Storage are included in `firestore.rules` and `storage.rules`.
 
 ## Author
 
-- Frontend Mentor - [@yfaheid](https://www.frontendmentor.io/profile/yfaheid)
+- [@yfaheid](https://github.com/yfaheid)
