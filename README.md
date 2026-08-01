@@ -1,52 +1,48 @@
-# Frontend Mentor - Link-sharing app solution
+# devlinks
 
-This is a solution to the [Link-sharing app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/linksharing-app-Fbt7yweGsT). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
+A link-sharing app for developers: sign up, add links to your profiles (GitHub, LinkedIn, Twitter, etc.), customize your public profile, and share a single link that shows them all.
 
-## Table of contents
+**Live site:** https://devlinks-yfaheid.netlify.app/
 
-- [Overview](#overview)
-  - [The challenge](#the-challenge)
-  - [Screenshot](#screenshot)
-  - [Links](#links)
-  - [Built with](#built-with)
-- [Author](#author)
+![devlinks screenshot](./src/assets/link-sharing-app-screenshot.jpg)
 
-**Note: Delete this note and update the table of contents based on what sections you keep.**
+## Features
 
-## Overview
+- Email/password authentication
+- Add, edit, remove, and drag-and-drop reorder links to popular developer platforms (GitHub, Frontend Mentor, Twitter, LinkedIn, YouTube, and more), with per-platform URL validation
+- Set profile details — first name, last name, email, and a profile photo
+- Live mobile-mockup preview of your profile as you edit
+- A public, shareable profile page at `/preview/:uid` that anyone can view without signing in
+- All data is scoped per-user in Firestore, with security rules enforcing that only the owner can edit their own links and profile
 
-### The challenge
+## Built with
 
-Users should be able to:
+- React + Vite
+- Tailwind CSS
+- React Router
+- Firebase (Authentication, Firestore, Storage)
+- [@hello-pangea/dnd](https://github.com/hello-pangea/dnd) for drag-and-drop reordering
 
-- Create, read, update, delete links and see previews in the mobile mockup
-- Receive validations if the links form is submitted without a URL or with the wrong URL pattern for the platform
-- Drag and drop links to reorder them
-- Add profile details like profile picture, first name, last name, and email
-- Receive validations if the profile details form is saved with no first or last name
-- Preview their devlinks profile and copy the link to their clipboard
-- View the optimal layout for the interface depending on their device's screen size
-- See hover and focus states for all interactive elements on the page
+## Running it locally
 
-### Screenshot
+1. Install dependencies:
 
-![](./src/assets/link-sharing-app-screenshot.jpg)
+   ```bash
+   npm install
+   ```
 
-### Links
+2. Create a Firebase project with **Authentication** (Email/Password provider), **Firestore**, and **Storage** enabled. Copy your web app config into `src/firebase.js`.
 
-- Solution URL: [Add solution URL here](https://www.frontendmentor.io/solutions/link-sharing-app-using-react-and-tailwind-css-7mq5u9jzRF)
-- Live Site URL: [Add live site URL here](https://devlinks-yfaheid.netlify.app/)
+3. Deploy the included security rules to your project:
+   - `firestore.rules` → Firestore → Rules
+   - `storage.rules` → Storage → Rules
 
-### Built with
+4. Start the dev server:
 
-- Semantic HTML5 markup
-- CSS custom properties
-- Flexbox
-- CSS Grid
-- Mobile-first workflow
-- React
-- Tailwind
+   ```bash
+   npm run dev
+   ```
 
 ## Author
 
-- Frontend Mentor - [@yfaheid](https://www.frontendmentor.io/profile/yfaheid)
+- [@yfaheid](https://github.com/yfaheid)
