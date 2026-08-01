@@ -92,11 +92,13 @@ export const validateURL = (inputURL, platform) => {
     (p) => p.name === platform
   )?.placeholder;
 
+  const stripWww = (domain) => domain?.replace(/^www\./, "");
+
   if (platformPlaceholder) {
     const placeholderParts = platformPlaceholder.split("://");
     if (placeholderParts.length > 1) {
-      const placeholderDomain = placeholderParts[1].split("/")[0];
-      const inputDomain = inputURL.split("://")[1]?.split("/")[0];
+      const placeholderDomain = stripWww(placeholderParts[1].split("/")[0]);
+      const inputDomain = stripWww(inputURL.split("://")[1]?.split("/")[0]);
 
       return placeholderDomain === inputDomain;
     }
