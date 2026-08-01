@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 import Dropdown from "./Dropdown";
 import linksmallIcon from "./assets/linksmall.svg";
 import githubIcon from "./assets/github.svg";
@@ -19,7 +19,7 @@ import arrowUpIcon from "./assets/arrowup.svg";
 import arrowDownIcon from "./assets/arrowdown.svg";
 import { useLinkContext } from "./LinksContext";
 import { validateURL } from "./UrlValidator";
-import { Draggable } from "react-beautiful-dnd";
+import { Draggable } from "@hello-pangea/dnd";
 
 export default function Links({
   onRemove,

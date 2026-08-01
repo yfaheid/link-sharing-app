@@ -6,10 +6,15 @@ import saveIcon from "./assets/save.svg";
 import phoneOutside from "./assets/phoneoutside.svg";
 import phoneInside from "./assets/phoneinside.svg";
 import Phone from "./Phone";
+import { db, storage } from "./firebase";
+import { useAuth } from "./authProvider";
+import { doc, setDoc } from "firebase/firestore";
+import { ref, uploadString, getDownloadURL } from "firebase/storage";
 
 export default function Details() {
   const { userDetails, updateDetails, uploadedImage, updateUploadedImage } =
     useDetailsContext();
+  const { user } = useAuth();
 
   const [firstNameError, setFirstNameError] = useState(false);
   const [lastNameError, setLastNameError] = useState(false);
@@ -44,7 +49,7 @@ export default function Details() {
     fileInput.current.click();
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     const hasFirstNameError = userDetails.firstName.trim() === "";
     const hasLastNameError = userDetails.lastName.trim() === "";
 
@@ -52,10 +57,34 @@ export default function Details() {
     setLastNameError(hasLastNameError);
 
     if (!hasFirstNameError && !hasLastNameError) {
-      setShowSuccessMessage(true);
-      setTimeout(() => {
-        setShowSuccessMessage(false);
-      }, 3000);
+      try {
+        let photoURL = uploadedImage;
+
+        if (uploadedImage && uploadedImage.startsWith("data:")) {
+          const imageRef = ref(storage, `profileImages/${user.uid}`);
+          await uploadString(imageRef, uploadedImage, "data_url");
+          photoURL = await getDownloadURL(imageRef);
+          updateUploadedImage(photoURL);
+        }
+
+        await setDoc(
+          doc(db, "profiles", user.uid),
+          {
+            firstName: userDetails.firstName,
+            lastName: userDetails.lastName,
+            email: userDetails.email,
+            photoURL: photoURL || null,
+          },
+          { merge: true }
+        );
+
+        setShowSuccessMessage(true);
+        setTimeout(() => {
+          setShowSuccessMessage(false);
+        }, 3000);
+      } catch (error) {
+        console.error("Error saving profile details: ", error);
+      }
     }
   };
 
@@ -202,7 +231,7 @@ export default function Details() {
                         />
                         {firstNameError && (
                           <p className="text-red text-xs absolute right-3">
-                            Can't be empty
+                            Can&apos;t be empty
                           </p>
                         )}
                       </label>
@@ -227,7 +256,7 @@ export default function Details() {
                         />
                         {lastNameError && (
                           <p className="text-red text-xs absolute right-3">
-                            Can't be empty
+                            Can&apos;t be empty
                           </p>
                         )}
                       </label>

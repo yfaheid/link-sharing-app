@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import devlinksLogo from "./assets/devlinks.svg";
 import linkIcon from "./assets/link.svg";
 import userIcon from "./assets/user.svg";

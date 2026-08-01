@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./Dropdown.css";
 import githubIcon from "./assets/github.svg";
 import frontendmentorIcon from "./assets/frontendmentor.svg";

@@ -143,7 +143,7 @@ export default function CreateAccount() {
               Create account
             </h2>
             <p className="text-gray">
-              Let's get you started sharing your links!
+              Let&apos;s get you started sharing your links!
             </p>
           </div>
           <form className="grid gap-6">
