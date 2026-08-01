@@ -3,13 +3,16 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 import { Link } from "react-router-dom";
 import { useDetailsContext } from "./DetailsContext";
 import { useLinkContext } from "./LinksContext";
+import { useAuth } from "./authProvider";
 import PreviewLinks from "./PreviewLinks";
 import linkIcon from "./assets/link.svg";
 
 export default function Preview() {
   const { userDetails } = useDetailsContext();
   const { links } = useLinkContext();
+  const { user } = useAuth();
   const [isCopied, setIsCopied] = useState(false);
+  const shareUrl = `${window.location.origin}/preview/${user.uid}`;
 
   const copyToClipboard = () => {
     setIsCopied(true);
@@ -29,7 +32,7 @@ export default function Preview() {
               </button>
             </Link>
             <CopyToClipboard
-              text="http://localhost:5173/preview"
+              text={shareUrl}
               onCopy={copyToClipboard}
             >
               <button
@@ -89,7 +92,7 @@ export default function Preview() {
                 </button>
               </Link>
               <CopyToClipboard
-                text="http://localhost:5173/preview"
+                text={shareUrl}
                 onCopy={copyToClipboard}
               >
                 <button

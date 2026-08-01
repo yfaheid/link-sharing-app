@@ -167,7 +167,7 @@ export default function Login() {
                 Login
               </button>
               <div className="grid">
-                <p className="text-gray text-center">Don't have an account?</p>
+                <p className="text-gray text-center">Don&apos;t have an account?</p>
                 <Link to="/createaccount" className="text-center">
                   <button className="text-dark-purple">Create account</button>
                 </Link>

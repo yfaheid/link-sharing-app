@@ -1,42 +1,33 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import phoneIcon from "./assets/phone.svg";
 import Links from "./Links";
 import saveIcon from "./assets/save.svg";
 import { useLinkContext } from "./LinksContext";
 import { validateURL } from "./UrlValidator";
-import { DragDropContext } from "react-beautiful-dnd";
-import StrictModeDroppable from "./StrictModeDroppable";
+import { DragDropContext, Droppable } from "@hello-pangea/dnd";
 import largePhoneIcon from "./assets/largephone.svg";
 import phoneOutside from "./assets/phoneoutside.svg";
 import phoneInside from "./assets/phoneinside.svg";
 import Phone from "./Phone";
 import { db } from "./firebase";
-import { collection, addDoc, getDocs } from "firebase/firestore";
+import { useAuth } from "./authProvider";
+import { setDoc, deleteDoc, doc } from "firebase/firestore";
 
 export default function Body() {
   const { links, addLink, removeLink, updateLinksOrder } = useLinkContext();
+  const { user } = useAuth();
   const isSaveDisabled = links.length === 0;
   const saveButtonOpacity = links.length > 0 ? 100 : 30;
 
   const [savePressed, setSavePressed] = useState(false);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
-  const linksCollectionRef = collection(db, "links");
-
-  useEffect(() => {
-    const fetchLinks = async () => {
-      const querySnapshot = await getDocs(linksCollectionRef);
-      const fetchedLinks = [];
-      querySnapshot.forEach((doc) => {
-        fetchedLinks.push({ ...doc.data(), isNew: false });
-      });
-      // Sort links by timestamp
-      fetchedLinks.sort((a, b) => a.timestamp - b.timestamp);
-      updateLinksOrder(fetchedLinks);
-    };
-
-    fetchLinks();
-  }, []);
+  const handleRemoveLink = (id) => {
+    deleteDoc(doc(db, "links", id)).catch((error) => {
+      console.error("Error deleting link: ", error);
+    });
+    removeLink(id);
+  };
 
   const handleSave = async () => {
     setSavePressed(true);
@@ -48,21 +39,21 @@ export default function Body() {
     if (!hasErrors) {
       try {
         const timestamp = new Date(); // Current timestamp
-        const newLinks = links.filter((link) => link.isNew);
         await Promise.all(
-          newLinks.map((link) =>
-            addDoc(linksCollectionRef, {
-              id: link.id,
-              platform: link.platform,
-              text: link.text,
-              timestamp, // add timestamp here
-            })
+          links.map((link) =>
+            setDoc(
+              doc(db, "links", link.id),
+              {
+                id: link.id,
+                userId: user.uid,
+                platform: link.platform,
+                text: link.text,
+                timestamp,
+              },
+              { merge: true }
+            )
           )
         );
-
-        // Update all links as not new
-        const updatedLinks = links.map((link) => ({ ...link, isNew: false }));
-        updateLinksOrder(updatedLinks);
 
         setShowSuccessMessage(true);
         setTimeout(() => {
@@ -119,7 +110,7 @@ export default function Body() {
               <div className="grid gap-9">
                 <p className="text-gray">
                   Add/edit/remove links below and then share all your profiles
-                  with the world! (Links should start with "https://www.")
+                  with the world! (Links should start with &quot;https://www.&quot;)
                 </p>
                 <div className="grid gap-6">
                   <button
@@ -130,7 +121,7 @@ export default function Body() {
                   </button>
                   <div>
                     <DragDropContext onDragEnd={onDragEnd}>
-                      <StrictModeDroppable
+                      <Droppable
                         droppableId={`links-${links.length}`}
                       >
                         {(provided) => (
@@ -145,14 +136,14 @@ export default function Body() {
                                 key={link.id}
                                 id={link.id}
                                 linkNumber={index + 1}
-                                onRemove={removeLink}
+                                onRemove={handleRemoveLink}
                                 index={index}
                               />
                             ))}
                             {provided.placeholder}
                           </div>
                         )}
-                      </StrictModeDroppable>
+                      </Droppable>
                     </DragDropContext>
                     {!links.length > 0 && (
                       <div className="bg-lighter-gray text-center rounded-xl px-5 py-12 md:px-16 md:py-20 lg:py-16 lg:px-28">
@@ -169,12 +160,12 @@ export default function Body() {
                           />
                           <div className="grid gap-6 md:gap-8">
                             <h2 className="font-bold text-dark-gray text-2xl md:text-3xl">
-                              Let's get you started
+                              Let&apos;s get you started
                             </h2>
                             <p className="text-gray">
-                              Use the "Add new link" button to get started. Once
+                              Use the &quot;Add new link&quot; button to get started. Once
                               you have more than one link, you can reorder and
-                              edit them. We're here to help you share your
+                              edit them. We&apos;re here to help you share your
                               profiles with everyone!
                             </p>
                           </div>

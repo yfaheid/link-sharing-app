@@ -1,21 +1,45 @@
-import React, { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { db } from "./firebase";
+import { useAuth } from "./authProvider";
+import { collection, query, where, getDocs } from "firebase/firestore";
 
 const LinkContext = createContext();
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useLinkContext() {
   return useContext(LinkContext);
 }
 
 export function LinkProvider({ children }) {
+  const { user } = useAuth();
   const [links, setLinks] = useState([]);
+
+  useEffect(() => {
+    if (!user) return;
+
+    const fetchLinks = async () => {
+      const userLinksQuery = query(
+        collection(db, "links"),
+        where("userId", "==", user.uid)
+      );
+      const querySnapshot = await getDocs(userLinksQuery);
+      const fetchedLinks = [];
+      querySnapshot.forEach((doc) => {
+        fetchedLinks.push(doc.data());
+      });
+      fetchedLinks.sort((a, b) => a.timestamp - b.timestamp);
+      setLinks(fetchedLinks);
+    };
+
+    fetchLinks();
+  }, [user]);
 
   const addLink = () => {
     const newLink = {
       id: uuidv4(), // Generates a unique UUID
       platform: "GitHub",
       text: "",
-      isNew: true,
     };
 
     setLinks([...links, newLink]);
