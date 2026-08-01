@@ -102,26 +102,6 @@ export default function Dropdown({
         style={{ width: "95%", margin: "0 auto" }}
       />
       <button
-        onMouseEnter={() => handleMouseEnter("Frontend Mentor")}
-        onMouseLeave={handleMouseLeave}
-        onClick={() => selectPlatform("Frontend Mentor")}
-        className="w-full gap-3 p-3 flex pl-3 items-center hover:text-dark-purple text-zinc-800 text-base font-normal leading-normal"
-      >
-        <img
-          src={
-            isIconHovered("Frontend Mentor")
-              ? purpleFrontendmentorIcon
-              : frontendmentorIcon
-          }
-          alt="Frontend Mentor icon"
-        />
-        Frontend Mentor
-      </button>
-      <div
-        className="self-stretch h-px bg-zinc-300"
-        style={{ width: "95%", margin: "0 auto" }}
-      />
-      <button
         onMouseEnter={() => handleMouseEnter("Twitter")}
         onMouseLeave={handleMouseLeave}
         onClick={() => selectPlatform("Twitter")}
@@ -316,6 +296,26 @@ export default function Dropdown({
           alt="Stack Overflow icon"
         />
         Stack Overflow
+      </button>
+      <div
+        className="self-stretch h-px bg-zinc-300"
+        style={{ width: "95%", margin: "0 auto" }}
+      />
+      <button
+        onMouseEnter={() => handleMouseEnter("Frontend Mentor")}
+        onMouseLeave={handleMouseLeave}
+        onClick={() => selectPlatform("Frontend Mentor")}
+        className="w-full gap-3 p-3 flex pl-3 items-center hover:text-dark-purple text-zinc-800 text-base font-normal leading-normal"
+      >
+        <img
+          src={
+            isIconHovered("Frontend Mentor")
+              ? purpleFrontendmentorIcon
+              : frontendmentorIcon
+          }
+          alt="Frontend Mentor icon"
+        />
+        Frontend Mentor
       </button>
     </div>
   );

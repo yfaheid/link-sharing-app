@@ -38,15 +38,19 @@ export default function PreviewLinks({ link }) {
         return (
           <div>
             <a
-              className="flex p-4 justify-between w-60 border-light-gray border rounded-lg bg-white text-dark-gray"
+              className="flex p-4 justify-between items-center w-60 border-light-gray border rounded-lg bg-white text-dark-gray"
               href={link.text}
             >
-              <div className="flex gap-3">
+              <div className="flex gap-3 items-center whitespace-nowrap text-sm">
                 <img src={frontendmentorIcon} alt="Frontend Mentor" />
                 Frontend Mentor
               </div>
 
-              <img src={arrowRightGrayIcon} alt="arrow right" />
+              <img
+                src={arrowRightGrayIcon}
+                alt="arrow right"
+                className="flex-shrink-0"
+              />
             </a>
           </div>
         );
