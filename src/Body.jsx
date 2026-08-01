@@ -82,8 +82,8 @@ export default function Body() {
   };
 
   return (
-    <div className="p-4 md:p-0">
-      <div className="lg:flex lg:justify-center lg:gap-5">
+    <div className="p-4 md:p-0 lg:flex lg:flex-col lg:h-full">
+      <div className="lg:flex lg:justify-center lg:gap-5 lg:flex-1 lg:min-h-0">
         <div className="hidden lg:grid bg-white rounded-xl justify-center items-center min-w-[43%] overflow-y-scroll relative">
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 min-w-full">
             <img
@@ -101,8 +101,8 @@ export default function Body() {
             <Phone />
           </div>
         </div>
-        <div className="lg:min-w-[55.5%] lg:max-w-[55.5%]">
-          <div className="bg-white overflow-y-scroll p-6 md:px-10 md:pt-12 md:pb-10 rounded-tr-xl rounded-tl-xl min-h-[627px] max-h-[627px] md:min-h-[780px] md:max-h-[780px] lg:min-h-[720px] lg:max-h-[720px]">
+        <div className="lg:min-w-[55.5%] lg:max-w-[55.5%] lg:flex lg:flex-col">
+          <div className="bg-white overflow-y-scroll p-6 md:px-10 md:pt-12 md:pb-10 rounded-tr-xl rounded-tl-xl min-h-[627px] max-h-[627px] md:min-h-[780px] md:max-h-[780px] lg:min-h-0 lg:max-h-none lg:flex-1">
             <div className="grid gap-2">
               <h1 className="text-2xl font-bold text-dark-gray md:text-3xl">
                 Customize your links

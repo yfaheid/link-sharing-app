@@ -21,7 +21,7 @@ export default function Header() {
   };
 
   return (
-    <div className="md:grid md:gap-5 md:p-5">
+    <div className="md:grid md:gap-5 md:p-5 lg:flex lg:flex-col lg:flex-1 lg:min-h-0">
       <div className="flex justify-between items-center p-4 pl-6 bg-white rounded-br-xl rounded-bl-xl md:rounded-xl">
         <div className="flex items-center gap-1">
           <img src={devlinksLogo} alt="devlinks logo" />
@@ -86,7 +86,9 @@ export default function Header() {
           </button>
         </Link>
       </div>
-      {showDetails ? <Details /> : showBody && <Body />}
+      <div className="lg:flex-1 lg:min-h-0">
+        {showDetails ? <Details /> : showBody && <Body />}
+      </div>
     </div>
   );
 }

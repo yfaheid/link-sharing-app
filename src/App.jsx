@@ -21,7 +21,7 @@ export default function App() {
               <Route
                 path="/"
                 element={
-                  <div className="font-instrument min-h-screen bg-lighter-gray">
+                  <div className="font-instrument min-h-screen bg-lighter-gray lg:h-screen lg:flex lg:flex-col">
                     <PrivateRoute>
                       <Header />
                     </PrivateRoute>
