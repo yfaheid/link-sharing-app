@@ -28,7 +28,9 @@ export function LinkProvider({ children }) {
       querySnapshot.forEach((doc) => {
         fetchedLinks.push(doc.data());
       });
-      fetchedLinks.sort((a, b) => a.timestamp - b.timestamp);
+      fetchedLinks.sort(
+        (a, b) => (a.order ?? a.timestamp) - (b.order ?? b.timestamp)
+      );
       setLinks(fetchedLinks);
     };
 

@@ -40,7 +40,7 @@ export default function Body() {
       try {
         const timestamp = new Date(); // Current timestamp
         await Promise.all(
-          links.map((link) =>
+          links.map((link, index) =>
             setDoc(
               doc(db, "links", link.id),
               {
@@ -49,6 +49,7 @@ export default function Body() {
                 platform: link.platform,
                 text: link.text,
                 timestamp,
+                order: index,
               },
               { merge: true }
             )
