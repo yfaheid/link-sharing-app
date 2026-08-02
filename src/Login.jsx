@@ -85,20 +85,19 @@ export default function Login() {
   };
 
   return (
-    <div className="bg-white h-screen">
-      <div className="grid p-8 gap-16">
-        <div className="flex gap-2 font-bold text-dark-gray">
-          <img src={devlinksLogo} alt="devlinks logo" />
-          <h1 className="text-4xl">devlinks</h1>
+    <div className="bg-lighter-gray min-h-screen flex flex-col items-center py-16 px-4">
+      <div className="flex items-center gap-2 font-bold text-dark-gray mb-10">
+        <img src={devlinksLogo} alt="devlinks logo" />
+        <h1 className="text-3xl">devlinks</h1>
+      </div>
+      <div className="bg-white rounded-xl p-10 w-full max-w-md">
+        <div className="grid gap-2 mb-10">
+          <h2 className="font-bold text-2xl text-dark-gray">Login</h2>
+          <p className="text-gray">
+            Add your details below to get back into the app
+          </p>
         </div>
-        <div className="grid gap-10">
-          <div className="grid gap-2">
-            <h2 className="font-bold text-2xl text-dark-gray">Login</h2>
-            <p className="text-gray">
-              Add your details below to get back into the app
-            </p>
-          </div>
-          <form className="grid gap-6">
+        <form className="grid gap-6">
             <div className="grid gap-1">
               <label className="text-sm text-dark-gray" htmlFor="email">
                 Email address
@@ -148,33 +147,32 @@ export default function Login() {
               />
               {passwordError && <p style={errorTextStyle}>{passwordError}</p>}
             </div>
-            <div className="grid gap-5">
-              <button
-                className="text-white hover:bg-[#BEADFF] bg-dark-purple w-full p-2.5 md:w-auto md:px-7 md:py-3 rounded-lg font-medium"
-                style={{
-                  boxShadow: "none",
-                }}
-                onMouseOver={(e) => {
-                  e.currentTarget.style.boxShadow =
-                    "0px 0px 32px 0px rgba(99, 60, 255, 0.25)";
-                }}
-                onMouseOut={(e) => {
-                  e.currentTarget.style.boxShadow = "none";
-                }}
-                onClick={handleLogin}
-                type="submit"
-              >
-                Login
-              </button>
-              <div className="grid">
-                <p className="text-gray text-center">Don&apos;t have an account?</p>
-                <Link to="/createaccount" className="text-center">
-                  <button className="text-dark-purple">Create account</button>
-                </Link>
-              </div>
-            </div>
-          </form>
-        </div>
+          <div className="grid gap-5">
+            <button
+              className="text-white hover:bg-[#BEADFF] bg-dark-purple w-full p-3 rounded-lg font-medium"
+              style={{
+                boxShadow: "none",
+              }}
+              onMouseOver={(e) => {
+                e.currentTarget.style.boxShadow =
+                  "0px 0px 32px 0px rgba(99, 60, 255, 0.25)";
+              }}
+              onMouseOut={(e) => {
+                e.currentTarget.style.boxShadow = "none";
+              }}
+              onClick={handleLogin}
+              type="submit"
+            >
+              Login
+            </button>
+            <p className="text-gray text-center">
+              Don&apos;t have an account?{" "}
+              <Link to="/createaccount" className="text-dark-purple font-medium">
+                Create account
+              </Link>
+            </p>
+          </div>
+        </form>
       </div>
     </div>
   );
