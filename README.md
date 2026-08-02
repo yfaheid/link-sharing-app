@@ -9,7 +9,7 @@ A link-sharing app for developers: sign up, add links to your profiles (GitHub, 
 ## Features
 
 - Email/password authentication
-- Add, edit, remove, and drag-and-drop reorder links to popular developer platforms (GitHub, Frontend Mentor, Twitter, LinkedIn, YouTube, and more), with per-platform URL validation
+- Add, edit, remove, and drag-and-drop reorder links to popular developer platforms (GitHub, Twitter, LinkedIn, YouTube, and more), with per-platform URL validation
 - Set profile details — first name, last name, email, and a profile photo
 - Live mobile-mockup preview of your profile as you edit
 - A public, shareable profile page at `/preview/:uid` that anyone can view without signing in
