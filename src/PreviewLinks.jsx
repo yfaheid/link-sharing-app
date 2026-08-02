@@ -22,7 +22,7 @@ export default function PreviewLinks({ link }) {
         return (
           <div>
             <a
-              className="flex p-4 justify-between w-60 rounded-lg bg-black text-white"
+              className="flex p-4 justify-between w-64 rounded-lg bg-black text-white"
               href={link.text}
             >
               <div className="flex gap-3">
@@ -38,10 +38,10 @@ export default function PreviewLinks({ link }) {
         return (
           <div>
             <a
-              className="flex p-4 justify-between items-center w-60 border-light-gray border rounded-lg bg-white text-dark-gray"
+              className="flex p-4 justify-between items-center w-64 border-light-gray border rounded-lg bg-white text-dark-gray"
               href={link.text}
             >
-              <div className="flex gap-3 items-center whitespace-nowrap text-sm">
+              <div className="flex gap-3 items-center whitespace-nowrap">
                 <img src={frontendmentorIcon} alt="Frontend Mentor" />
                 Frontend Mentor
               </div>
@@ -58,7 +58,7 @@ export default function PreviewLinks({ link }) {
         return (
           <div>
             <a
-              className="flex p-4 justify-between w-60 rounded-lg bg-[#43B7E9] text-white"
+              className="flex p-4 justify-between w-64 rounded-lg bg-[#43B7E9] text-white"
               href={link.text}
             >
               <div className="flex gap-3">
@@ -74,7 +74,7 @@ export default function PreviewLinks({ link }) {
         return (
           <div>
             <a
-              className="flex p-4 justify-between w-60 rounded-lg bg-[#2D68FF] text-white"
+              className="flex p-4 justify-between w-64 rounded-lg bg-[#2D68FF] text-white"
               href={link.text}
             >
               <div className="flex gap-3">
@@ -90,7 +90,7 @@ export default function PreviewLinks({ link }) {
         return (
           <div>
             <a
-              className="flex p-4 justify-between w-60 rounded-lg bg-[#EE3939] text-white"
+              className="flex p-4 justify-between w-64 rounded-lg bg-[#EE3939] text-white"
               href={link.text}
             >
               <div className="flex gap-3">
@@ -106,7 +106,7 @@ export default function PreviewLinks({ link }) {
         return (
           <div>
             <a
-              className="flex p-4 justify-between w-60 rounded-lg bg-[#2442AC] text-white"
+              className="flex p-4 justify-between w-64 rounded-lg bg-[#2442AC] text-white"
               href={link.text}
             >
               <div className="flex gap-3">
@@ -122,7 +122,7 @@ export default function PreviewLinks({ link }) {
         return (
           <div>
             <a
-              className="flex p-4 justify-between w-60 rounded-lg bg-[#EE3FC8] text-white"
+              className="flex p-4 justify-between w-64 rounded-lg bg-[#EE3FC8] text-white"
               href={link.text}
             >
               <div className="flex gap-3">
@@ -138,7 +138,7 @@ export default function PreviewLinks({ link }) {
         return (
           <div>
             <a
-              className="flex p-4 justify-between w-60 rounded-lg bg-[#333333] text-white"
+              className="flex p-4 justify-between w-64 rounded-lg bg-[#333333] text-white"
               href={link.text}
             >
               <div className="flex gap-3">
@@ -154,7 +154,7 @@ export default function PreviewLinks({ link }) {
         return (
           <div>
             <a
-              className="flex p-4 justify-between w-60 rounded-lg bg-[#8A1A50] text-white"
+              className="flex p-4 justify-between w-64 rounded-lg bg-[#8A1A50] text-white"
               href={link.text}
             >
               <div className="flex gap-3">
@@ -170,7 +170,7 @@ export default function PreviewLinks({ link }) {
         return (
           <div>
             <a
-              className="flex p-4 justify-between w-60 rounded-lg bg-dark-gray text-white"
+              className="flex p-4 justify-between w-64 rounded-lg bg-dark-gray text-white"
               href={link.text}
             >
               <div className="flex gap-3">
@@ -186,7 +186,7 @@ export default function PreviewLinks({ link }) {
         return (
           <div>
             <a
-              className="flex p-4 justify-between w-60 rounded-lg bg-[#302267] text-white"
+              className="flex p-4 justify-between w-64 rounded-lg bg-[#302267] text-white"
               href={link.text}
             >
               <div className="flex gap-3">
@@ -202,7 +202,7 @@ export default function PreviewLinks({ link }) {
         return (
           <div>
             <a
-              className="flex p-4 justify-between w-60 rounded-lg bg-[#EB4925] text-white"
+              className="flex p-4 justify-between w-64 rounded-lg bg-[#EB4925] text-white"
               href={link.text}
             >
               <div className="flex gap-3">
@@ -218,7 +218,7 @@ export default function PreviewLinks({ link }) {
         return (
           <div>
             <a
-              className="flex p-4 justify-between w-60 rounded-lg bg-[#0330D1] text-white"
+              className="flex p-4 justify-between w-64 rounded-lg bg-[#0330D1] text-white"
               href={link.text}
             >
               <div className="flex gap-3">
@@ -234,15 +234,19 @@ export default function PreviewLinks({ link }) {
         return (
           <div>
             <a
-              className="flex p-4 justify-between w-60 rounded-lg bg-[#EC7100] text-white"
+              className="flex p-4 justify-between items-center w-64 rounded-lg bg-[#EC7100] text-white"
               href={link.text}
             >
-              <div className="flex gap-3">
+              <div className="flex gap-3 items-center whitespace-nowrap">
                 <img src={stackoverflowIcon} alt="hashnodeIcon" />
                 Stack Overflow
               </div>
 
-              <img src={arrowRightIcon} alt="arrow right" />
+              <img
+                src={arrowRightIcon}
+                alt="arrow right"
+                className="flex-shrink-0"
+              />
             </a>
           </div>
         );
