@@ -7,7 +7,7 @@ const Phone = () => {
   const { links } = useLinkContext();
 
   return (
-    <div className="w-[237px] h-[514px] z-10">
+    <div className="w-64 h-[514px] z-10">
       <div className="grid gap-14">
         <div className="grid gap-6">
           {userDetails.uploadedImage ? (
