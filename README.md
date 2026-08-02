@@ -4,7 +4,7 @@ A link-sharing app for developers: sign up, add links to your profiles (GitHub, 
 
 **Live site:** https://devlinks-yfaheid.netlify.app/
 
-![devlinks screenshot](./src/assets/link-sharing-app-screenshot.jpg)
+![devlinks screenshot](./src/assets/link-sharing-app-screenshot.png)
 
 ## Features
 
