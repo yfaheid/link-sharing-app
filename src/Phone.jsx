@@ -39,7 +39,7 @@ const Phone = () => {
           {[...Array(Math.max(0, 4 - links.length))].map((_, index) => (
             <div
               key={index}
-              className="rounded-lg h-[56px] w-[240px] bg-[#EEEEEE] m-auto"
+              className="rounded-lg h-[56px] w-64 bg-[#EEEEEE] m-auto"
             ></div>
           ))}
         </div>
